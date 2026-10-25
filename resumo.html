@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo · Ipê do Planalto · Geografia 7º</title>
+<style>
+  :root{--fundo:#1a120d;--fundo2:#24190f;--borda:#3a2a1c;--borda2:#55402b;--ipe:#ffc93c;--buriti:#6fcf7a;--terra:#e2603f;--rio:#4fb3e0;--roxo:#b98be6;--vermelho:#ff5d5d;--texto:#f6ecdf;--cinza:#b3a08c}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Tahoma,'Segoe UI',Verdana,sans-serif;background:radial-gradient(900px 420px at 50% -8%,#3a2614,#1a120d 62%),var(--fundo);color:var(--texto);line-height:1.6;padding-bottom:60px;font-size:17px}
+  h1,h2,h3{font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif}
+  header{background:linear-gradient(120deg,#45200f,#3a2614 50%,#4a3608);padding:26px 18px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--terra)}
+  header .selo{font-size:.76rem;letter-spacing:2px;color:#ffd2c2;text-transform:uppercase}
+  header h1{font-size:1.55rem;margin:6px 0 2px}
+  header p{color:#f1e4c8;font-size:.92rem}
+  .wrap{max-width:920px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;border-radius:20px;font-size:.85rem;border:1px solid var(--borda)}
+  .barra-nav a.on{background:var(--terra);color:#2e0e04;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--borda);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--terra);font-size:1.15rem;margin-bottom:8px}
+  .sec{margin:28px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sec h2{font-size:1.3rem}
+  .sec .pill{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:12px;font-weight:bold}
+  .pill.pov{background:var(--ipe);color:#2e2200} .pill.nat{background:var(--buriti);color:#0f2a12} .pill.agua{background:var(--rio);color:#06263a} .pill.eco{background:var(--terra);color:#2e0e04} .pill.sud{background:var(--roxo);color:#22113a}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+  .card{background:var(--fundo2);border:1px solid var(--borda);border-radius:14px;padding:14px;border-top:4px solid var(--ipe)}
+  .card.nat{border-top-color:var(--buriti)} .card.agua{border-top-color:var(--rio)} .card.eco{border-top-color:var(--terra)} .card.sud{border-top-color:var(--roxo)}
+  .card h3{font-size:1.02rem;margin-bottom:8px}
+  .card ul{margin-left:18px}
+  .card li{margin-bottom:5px;font-size:.94rem}
+  .card b{color:var(--ipe)} .card.nat b{color:var(--buriti)} .card.agua b{color:var(--rio)} .card.eco b{color:var(--terra)} .card.sud b{color:var(--roxo)}
+  .postit{background:#ffe88a;color:#3a2a00;border-radius:4px;padding:12px 14px;font-size:.93rem;box-shadow:3px 4px 10px rgba(0,0,0,.4);transform:rotate(-1deg);margin:14px 0}
+  .postit b{color:#7a4a00}
+  .peg{background:#3a1814;border:2px solid var(--terra);border-radius:12px;padding:12px 14px;margin:14px 0;font-size:.93rem}
+  .peg b{color:#ffb9a6}
+  .narrador{background:#2c2010;border-left:4px solid var(--ipe);border-radius:0 12px 12px 0;padding:10px 14px;margin:14px 0;font-size:.93rem;font-style:italic;color:#f3e2bd}
+  .flips{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .flip{perspective:900px;height:170px;cursor:pointer}
+  .flip .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+  .flip.on .inner{transform:rotateY(180deg)}
+  .flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:.9rem}
+  .flip .front{background:linear-gradient(135deg,#33241a,#24190f);border:1px solid var(--borda2);font-weight:bold}
+  .flip .front small{display:block;color:var(--cinza);font-weight:normal;font-size:.74rem;margin-top:6px}
+  .flip .back{background:#3d3010;border:1px solid var(--ipe);transform:rotateY(180deg)}
+  .tabela{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+  .tabela th,.tabela td{border:1px solid var(--borda);padding:7px 9px;text-align:left;vertical-align:top}
+  .tabela th{background:#2c1f13}
+  .scroll{overflow-x:auto}
+  .linha{position:relative;margin:10px 0 0 10px;padding-left:20px;border-left:3px dashed #8a6a48}
+  .linha .m{position:relative;margin-bottom:12px;background:var(--fundo2);border:1px solid var(--borda);border-radius:10px;padding:9px 12px;font-size:.92rem}
+  .linha .m:before{content:'🌼';position:absolute;left:-33px;top:6px;font-size:1rem}
+  .linha .m b.ano{color:var(--ipe);display:block}
+  .barras{margin-top:10px}
+  .barras .b{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.85rem}
+  .barras .b span.ano{width:44px;color:var(--cinza)}
+  .barras .b div{height:16px;background:linear-gradient(90deg,var(--ipe),var(--terra));border-radius:4px}
+  .escada{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:flex-end}
+  .escada .deg{flex:1;min-width:130px;border-radius:12px 12px 4px 4px;padding:10px 12px;font-size:.86rem;border:1px solid var(--borda2);background:#173a1c}
+  .escada .deg b{display:block;font-size:.95rem;margin-bottom:4px;color:var(--buriti)}
+  .fluxo{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:8px}
+  .fluxo .et{flex:1;min-width:140px;background:#1e150d;border:1px solid var(--borda2);border-left:4px solid var(--terra);border-radius:0 10px 10px 0;padding:10px;font-size:.87rem}
+  .fluxo .et b{color:var(--terra)}
+  .gloss{columns:2;column-gap:18px}
+  .gloss div{break-inside:avoid;margin-bottom:8px;font-size:.92rem}
+  .gloss b{color:var(--ipe)}
+  @media(max-width:600px){.gloss{columns:1}}
+  .fim{background:linear-gradient(120deg,#163a1e,#1f4a26);border:2px solid var(--buriti);border-radius:16px;padding:18px;margin-top:24px;text-align:center}
+  .fim h3{color:#b6f0aa;margin-bottom:8px}
+  .fim button{background:var(--buriti);color:#0f2a12;border:none;border-radius:10px;padding:12px 20px;font-size:1rem;font-weight:bold;margin:6px;cursor:pointer;font-family:inherit}
+  .fim button:disabled{background:#2e241a;color:#8a7a68;cursor:not-allowed}
+  .fim a.btn{display:inline-block;margin:6px;background:var(--ipe);color:#2e2200;text-decoration:none;font-weight:bold;padding:12px 20px;border-radius:10px}
+  .fim a.btn.off{background:#2e241a;color:#8a7a68;pointer-events:none}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:var(--fundo2);border:1px solid var(--borda);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--borda2);border-radius:8px;padding:6px 10px;font-size:.8rem;cursor:pointer;font-family:inherit}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(14,9,6,.97);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--terra);border-radius:14px;padding:22px;max-width:440px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal .big{font-size:2.2rem}
+  .modal a{display:inline-block;background:var(--terra);color:#2e0e04;border-radius:8px;padding:10px 18px;font-weight:bold;text-decoration:none}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Ipê do Planalto · Geografia 7º ano · Colégio Legado</div>
+  <h1>🗺️ Resumo — Copa do Ipê</h1>
+  <p>Tudo das fotos do livro em tabelas, cards, cartas e post-its · Cap. 09 + Cap. 10 (p. 8)</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html">🎯 Quiz</a>
+    <a class="on" href="resumo.html">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🌼 A copa inteira do ipê</h2>
+    <p>Use este resumo para fechar as dúvidas que o Quiz mostrou e para revisar na véspera. Leia até o fim: lá embaixo está o botão <b>“Li o resumo até o fim”</b>, que destrava o <b>📝 Simulado</b>.</p>
+  </div>
+  <div class="painel"><span id="salvo">📏 Rolagem máxima: 0%</span><button class="mini" onclick="exportar()">📥 Exportar</button></div>
+
+  <div class="narrador">🎙️ Nota do narrador: a copa do ipê tem cinco cores. Amarelo para o território e a população, verde para a natureza, azul para a água, vermelho-terra para a economia e lilás para a primeira olhada no Sudeste.</div>
+
+  <!-- ===== ASPECTOS GERAIS ===== -->
+  <div class="sec"><span class="pill pov">Galho 1</span><h2>🗺️ Ficha do Centro-Oeste</h2></div>
+  <div class="grid">
+    <div class="card"><h3>📏 Tamanho e gente</h3><ul>
+      <li><b>2ª maior região</b> do Brasil: cerca de <b>1 606 354 km²</b>.</li>
+      <li>Censo 2022: cerca de <b>16 289 538 habitantes</b> — a região <b>menos populosa</b>.</li>
+      <li>Apelido no livro: <b>“o coração do Brasil”</b>.</li></ul></div>
+    <div class="card"><h3>🏛️ Estados e capitais</h3><ul>
+      <li><b>Mato Grosso</b> — Cuiabá</li>
+      <li><b>Mato Grosso do Sul</b> — Campo Grande</li>
+      <li><b>Goiás</b> — Goiânia</li>
+      <li><b>Distrito Federal</b> — Brasília</li></ul></div>
+  </div>
+  <div class="flips" style="margin-top:12px">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">1958<small>toque para virar</small></div><div class="face back">Parte do território de <b>Goiás</b> é transferida para <b>Brasília</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">1977<small>toque para virar</small></div><div class="face back"><b>Mato Grosso</b> é dividido e nasce o <b>Mato Grosso do Sul</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">1988<small>toque para virar</small></div><div class="face back"><b>Goiás</b> é desmembrado e nasce o <b>Tocantins</b> — estado da região <b>Norte</b>.</div></div></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> o <b>Tocantins</b> saiu de Goiás, mas é da região <b>Norte</b>. E o Centro-Oeste é <b>grande em área</b> (2º lugar) e <b>pequeno em população</b> (último lugar).</div>
+
+  <!-- ===== POVOAMENTO ===== -->
+  <div class="sec"><span class="pill pov">Galhos 2 e 3</span><h2>⏳ Linha do tempo do povoamento</h2></div>
+  <div class="linha">
+    <div class="m"><b class="ano">Antes da colonização</b>Povos indígenas de diversas etnias, com modos de vida adaptados aos ecossistemas.</div>
+    <div class="m"><b class="ano">Séculos XVII e XVIII</b><b>Bandeirantes</b> atrás de pedras preciosas e ouro → <b>mineração</b> forma povoados; com a pecuária, mais gente se fixa. (Mineração rudimentar → Corumbá, Cáceres e Cuiabá.)</div>
+    <div class="m"><b class="ano">Século XIX</b>Minas escassas → a <b>pecuária</b> vira atividade predominante (e erva-mate para subsistência). Grande <b>estagnação econômica</b>.</div>
+    <div class="m"><b class="ano">Final do século XIX</b>Marechal <b>Cândido Rondon</b>: expedições científicas e, a partir de 1890, <b>linhas telegráficas</b> (MT–GO, Cuiabá–Corumbá, MT–AM) → comunicação e integração.</div>
+    <div class="m"><b class="ano">Década de 1930</b><b>Marcha para o Oeste</b> (governo Getúlio Vargas): expandir a fronteira agrícola e abastecer o Sudeste com produtos primários; rodovias, ferrovias e fim de barreiras alfandegárias.</div>
+    <div class="m"><b class="ano">Década de 1950</b><b>Construção de Brasília</b> (governo Juscelino Kubitschek) → migração intensa.</div>
+    <div class="m"><b class="ano">Depois de 1970</b>Queda de empregos no Sudeste + esforços do governo → migrantes, sobretudo do <b>Sul</b>.</div>
+    <div class="m"><b class="ano">Hoje</b><b>Agronegócio</b> = “o motor das migrações atuais”.</div>
+  </div>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>🏛️ Por que Brasília?</h3><ul>
+      <li>Ideia do <b>século XIX</b>.</li>
+      <li><b>Interiorizar</b> o país.</li>
+      <li><b>Descentralizar</b> as atividades econômicas do Sudeste.</li>
+      <li>Cidade <b>planejada</b>: progresso e modernidade.</li></ul></div>
+    <div class="card"><h3>👷 Candangos</h3><ul>
+      <li><b>Nordestinos e nortistas</b> que vieram construir Brasília.</li>
+      <li>Caminhão até Goiás: até <b>45 dias</b>.</li>
+      <li>Alojamentos; <b>mais de 10 horas</b> de trabalho por dia.</li>
+      <li>Muitos chegavam só com a roupa do corpo.</li></ul></div>
+    <div class="card"><h3>🏘️ Cidades-satélites</h3><ul>
+      <li>O plano <b>não previu moradia</b> para as classes economicamente desfavorecidas.</li>
+      <li>Essas pessoas foram para cidades no <b>entorno</b> da capital.</li></ul></div>
+  </div>
+  <div class="postit">📌 <b>Frase-chave do livro:</b> a ocupação do Centro-Oeste sempre esteve ligada aos <b>interesses do Estado</b> — econômicos, territoriais ou políticos.</div>
+
+  <!-- ===== PÓS-1970 ===== -->
+  <div class="sec"><span class="pill pov">Galho 4</span><h2>🚚 Depois de 1970: o que atraiu os migrantes</h2></div>
+  <div class="fluxo">
+    <div class="et"><b>Incentivos fiscais e créditos</b></div>
+    <div class="et"><b>Empresas e fazendeiros</b></div>
+    <div class="et"><b>Terra barata</b> (comparada ao Sul e ao Sudeste)</div>
+    <div class="et"><b>Fronteira agrícola + infraestrutura</b></div>
+    <div class="et"><b>→ Revolução Verde</b> (modernização agrícola) <b>→ agronegócio</b></div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> candangos (anos 1950) = <b>nordestinos e nortistas</b>. Migrantes depois de 1970 = sobretudo do <b>Sul</b>. E a terra era <b>barata</b>, não cara.</div>
+
+  <!-- ===== URBANIZAÇÃO ===== -->
+  <div class="sec"><span class="pill pov">Galho 5</span><h2>🏙️ Urbanização e rodovias</h2></div>
+  <div class="postit">📌 <b>Urbanização</b> = transição de ambientes predominantemente <b>rurais</b> para <b>urbanos</b>, com <b>migração</b> da população e <b>expansão das infraestruturas urbanas</b>.</div>
+  <div class="barras">
+    <div class="b"><span class="ano">1940</span><div style="width:21.52%"></div>21,52%</div>
+    <div class="b"><span class="ano">1950</span><div style="width:24.38%"></div>24,38%</div>
+    <div class="b"><span class="ano">1960</span><div style="width:34.22%"></div>34,22%</div>
+    <div class="b"><span class="ano">1970</span><div style="width:48.04%"></div>48,04%</div>
+    <div class="b"><span class="ano">1980</span><div style="width:67.79%"></div>67,79%</div>
+    <div class="b"><span class="ano">1991</span><div style="width:81.28%"></div>81,28%</div>
+    <div class="b"><span class="ano">2000</span><div style="width:86.73%"></div>86,73%</div>
+    <div class="b"><span class="ano">2010</span><div style="width:88.80%"></div>88,80%</div>
+    <div class="b"><span class="ano">2015</span><div style="width:89.81%"></div>89,81%</div>
+    <div class="b"><span class="ano">2022</span><div style="width:91.35%"></div>91,35%</div>
+  </div>
+  <p style="font-size:.8rem;color:var(--cinza);margin-top:4px">População urbana do Centro-Oeste (tabela do livro, p. 90).</p>
+  <div class="grid" style="margin-top:12px">
+    <div class="card"><h3>🔎 Por que a cidade cresceu (depois de 1970)</h3><ul>
+      <li>Construção e inauguração de <b>Brasília</b>.</li>
+      <li><b>Incentivos</b> governamentais.</li>
+      <li>Melhoria da <b>infraestrutura urbana</b>.</li>
+      <li>Empregos nos <b>serviços do agronegócio</b>.</li>
+      <li><b>Modernização agrícola</b> (tecnologia) → menos mão de obra no campo → gente vai para a cidade.</li></ul></div>
+    <div class="card"><h3>🛣️ Rodovias</h3><ul>
+      <li>Integrar o <b>interior ao litoral</b>.</li>
+      <li><b>Escoar</b> os produtos primários.</li>
+      <li>Contribuíram para a <b>migração</b>.</li></ul></div>
+  </div>
+
+  <!-- ===== POPULAÇÃO ===== -->
+  <div class="sec"><span class="pill pov">Galho 6</span><h2>👥 População, densidade e pirâmide</h2></div>
+  <div class="grid">
+    <div class="card"><h3>📊 População por região (IBGE 2023)</h3><ul>
+      <li>Sudeste: 84 840 113</li><li>Nordeste: 54 658 515</li><li>Sul: 29 937 706</li><li>Norte: 17 354 884</li><li><b>Centro-Oeste: 16 289 538</b> (a menor)</li></ul></div>
+    <div class="card"><h3>📈 Crescimento 2010–2022</h3><ul>
+      <li>Centro-Oeste: <b>1,23%</b> — o <b>maior</b> do país.</li>
+      <li>Motivo principal: crescimento do <b>agronegócio</b>.</li>
+      <li>Em 2º: Norte, com 0,75%.</li></ul></div>
+    <div class="card"><h3>🧍 Pirâmide etária (2022)</h3><ul>
+      <li>Maioria <b>adulta</b> (20 a 59 anos) = corpo da pirâmide.</li>
+      <li><b>Natalidade</b> (nascimentos) em queda.</li>
+      <li>Topo afina a partir dos <b>65 anos</b>.</li></ul></div>
+  </div>
+  <div class="scroll"><table class="tabela">
+    <thead><tr><th>Unidade</th><th>População</th><th>Densidade (hab/km²)</th></tr></thead>
+    <tbody>
+      <tr><td><b style="color:var(--ipe)">Goiás</b> (mais povoado)</td><td>7 056 495</td><td>20,74</td></tr>
+      <tr><td>Mato Grosso</td><td>3 658 649</td><td>4,05</td></tr>
+      <tr><td><b style="color:var(--ipe)">Distrito Federal</b> (mais denso)</td><td>2 817 381</td><td>489,06</td></tr>
+      <tr><td>Mato Grosso do Sul</td><td>2 757 013</td><td>7,72</td></tr>
+      <tr><td><b>Região toda</b></td><td>16 289 538</td><td>10,14</td></tr>
+    </tbody>
+  </table></div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> <b>mais povoado</b> (mais habitantes) = <b>Goiás</b>. <b>Mais denso</b> (mais gente por km²) = <b>Distrito Federal</b>. E “menos populoso” não quer dizer “cresce pouco”: o Centro-Oeste é o que <b>mais cresceu</b>.</div>
+
+  <!-- ===== CLIMAS ===== -->
+  <div class="sec"><span class="pill nat">Galho 7</span><h2>🌦️ Os três climas</h2></div>
+  <div class="grid">
+    <div class="card nat"><h3>☀️ Tropical (predomina)</h3><ul>
+      <li>Temperaturas <b>altas o ano todo</b>.</li>
+      <li><b>Verão chuvoso</b> e <b>inverno seco</b>.</li>
+      <li>Exemplo: Cuiabá (MT).</li></ul></div>
+    <div class="card nat"><h3>🌧️ Equatorial</h3><ul>
+      <li>Altas temperaturas, <b>pouca variação</b> entre os meses.</li>
+      <li>Chuva significativa no período chuvoso (= verão).</li>
+      <li>Norte de MT — exemplo: Aripuanã.</li></ul></div>
+    <div class="card nat"><h3>⛰️ Tropical de altitude</h3><ul>
+      <li>Temperaturas <b>mais amenas</b> (baixas), sobretudo no inverno.</li>
+      <li>Causa: <b>altitudes mais elevadas</b>.</li>
+      <li>Exemplo: Iguatemi (MS).</li></ul></div>
+  </div>
+  <div class="postit">📌 <b>Climograma:</b> barras = chuva (mm); linha = temperatura (°C). Biomas da região: <b>Cerrado, Floresta Amazônica e Pantanal</b>.</div>
+
+  <!-- ===== BIOMAS ===== -->
+  <div class="sec"><span class="pill nat">Galhos 8 e 9</span><h2>🌳 Cerrado, Pantanal e Floresta Amazônica</h2></div>
+  <div class="grid">
+    <div class="card nat"><h3>🌳 Cerrado</h3><ul>
+      <li>Ocupa a <b>maior parte</b> da região; típico do clima tropical.</li>
+      <li><b>Galhos retorcidos</b> ← alumínio no solo.</li>
+      <li><b>Casca grossa</b> → umidade + defesa contra queimadas.</li>
+      <li><b>Raízes profundas</b> → água das camadas fundas.</li>
+      <li>Ameaça: devastação (população, economia, infraestrutura).</li></ul></div>
+    <div class="card nat"><h3>🐊 Pantanal</h3><ul>
+      <li><b>Maior planície de inundação contínua</b> do mundo.</li>
+      <li>Alagamentos periódicos (rios e lagos transbordam).</li>
+      <li>Mistura espécies da Amazônia e do Cerrado; matas ciliares.</li>
+      <li>Um dos <b>patrimônios da humanidade</b>.</li>
+      <li>Ameaça: ações <b>antrópicas</b> (urbanização, agropecuária inadequada).</li></ul></div>
+    <div class="card nat"><h3>🌲 Floresta Amazônica</h3><ul>
+      <li><b>Maior floresta tropical</b> do mundo.</li>
+      <li>Densa, árvores grandes e <b>latifoliadas</b> (folhas largas).</li>
+      <li>Grande biodiversidade.</li>
+      <li>Ameaça: <b>desmatamento ilegal</b>.</li></ul></div>
+  </div>
+  <p style="margin-top:12px;font-weight:bold">🌾 Fisionomias do Cerrado (da mais baixa para a mais alta):</p>
+  <div class="escada">
+    <div class="deg" style="min-height:60px"><b>Campo limpo</b>formação de campo</div>
+    <div class="deg" style="min-height:75px"><b>Campo sujo</b>formação de campo</div>
+    <div class="deg" style="min-height:90px"><b>Campo cerrado</b>cerrado típico</div>
+    <div class="deg" style="min-height:105px"><b>Cerrado</b>cerrado típico</div>
+    <div class="deg" style="min-height:125px"><b>Cerradão</b>formação com floresta</div>
+  </div>
+  <div class="peg">⚠️ <b>Pegadinha:</b> “maior planície de inundação” = <b>Pantanal</b>; “maior floresta tropical” = <b>Amazônia</b>; “ocupa a maior parte da região” = <b>Cerrado</b>. Galho torto é por causa do <b>alumínio</b>, não da falta de água.</div>
+
+  <!-- ===== HIDROGRAFIA ===== -->
+  <div class="sec"><span class="pill agua">Galho 10</span><h2>💧 As bacias hidrográficas</h2></div>
+  <div class="postit">📌 O Centro-Oeste abriga as <b>nascentes das principais bacias hidrográficas do Brasil</b>.</div>
+  <div class="scroll"><table class="tabela">
+    <thead><tr><th>Bacia</th><th>Marca registrada</th><th>Usos</th></tr></thead>
+    <tbody>
+      <tr><td><b style="color:var(--rio)">Amazônica</b></td><td>Banha MT; nascentes de afluentes do Amazonas, como o <b>Rio Xingu</b>. Bacia do Xingu: Cerrado e Amazônia preservados, <b>animais endêmicos</b>, ribeirinhos, Terras Indígenas.</td><td>Também tem grande atividade agropecuária.</td></tr>
+      <tr><td><b style="color:var(--rio)">Paraguai</b></td><td>Muitos trechos de <b>planície</b>; fica no <b>Pantanal</b>. Na cheia: lagoas e sedimentos que deixam as várzeas férteis.</td><td><b>Navegação</b>: mercadorias para o <b>Mercosul</b> (hidrovia).</td></tr>
+      <tr><td><b style="color:var(--rio)">Tocantins-Araguaia</b></td><td><b>Maior bacia integralmente brasileira</b> (rios Tocantins e Araguaia).</td><td>Transporte das populações ribeirinhas e <b>energia elétrica</b>.</td></tr>
+      <tr><td><b style="color:var(--rio)">Paraná</b></td><td>Está também no <b>Sul e no Sudeste</b>.</td><td><b>Energia</b> (usina binacional de <b>Itaipu</b>: Brasil e Paraguai) e <b>navegação</b> (circulação de mercadorias).</td></tr>
+    </tbody>
+  </table></div>
+
+  <!-- ===== ECONOMIA ===== -->
+  <div class="sec"><span class="pill eco">Galhos 11 e 12</span><h2>🚜 Economia</h2></div>
+  <div class="grid">
+    <div class="card eco"><h3>⛏️ → 🐂 → 🌾 Ontem</h3><ul>
+      <li>Sempre forte em <b>atividades primárias</b>.</li>
+      <li>Séc. XVII–XVIII: mineração rudimentar.</li>
+      <li>Séc. XIX: pecuária + erva-mate; <b>estagnação</b>.</li>
+      <li>1930: Marcha para o Oeste → abastecer o Sudeste.</li>
+      <li>1970–1980: <b>modernização</b> (máquinas, defensivos, sementes melhoradas, drones, monitoramento do tempo, engenheiros e zootécnicos) → <b>trigo, soja, arroz e milho</b>.</li></ul></div>
+    <div class="card eco"><h3>🏆 Hoje</h3><ul>
+      <li><b>Lidera a produção agrícola</b> do Brasil.</li>
+      <li>Maior rebanho: cerca de <b>77,2 milhões</b> de cabeças de gado.</li>
+      <li><b>Mato Grosso</b>: cerca de <b>34,2 milhões</b> de cabeças → laticínios, frigoríficos, calçados.</li>
+      <li>Grãos (out./2023): Centro-Oeste <b>50,9%</b>; MT 31,4%.</li>
+      <li>Agropecuária: participação muito importante no <b>PIB</b>.</li></ul></div>
+    <div class="card eco"><h3>🗺️ No mapa</h3><ul>
+      <li>Maior parte: <b>pecuária extensiva</b> e <b>lavouras de grãos</b>.</li>
+      <li>Indústria cresceu com o capital do agro: <b>maquinário</b> e processamento da produção.</li></ul></div>
+  </div>
+  <p style="margin-top:12px;font-weight:bold">🔗 A corrente do agronegócio (p. 103):</p>
+  <div class="fluxo">
+    <div class="et"><b>1.</b> Agronegócio se expande e se moderniza</div>
+    <div class="et"><b>2.</b> População cresce (migrantes buscam trabalho)</div>
+    <div class="et"><b>3.</b> Urbanização aumenta</div>
+    <div class="et"><b>4.</b> Novas atividades nas cidades</div>
+    <div class="et"><b>5.</b> Mais <b>comércio</b> e <b>serviços</b></div>
+  </div>
+  <div class="postit">📌 <b>Turismo:</b> Pantanal e Chapadas dos Veadeiros e dos Guimarães. <b>Goiás</b>: mais de <b>400%</b> de crescimento nos prestadores de serviços de turismo. <b>Ecoturismo</b> = turismo ligado a atividades da natureza.</div>
+
+  <!-- ===== SUDESTE ===== -->
+  <div class="sec"><span class="pill sud">Galho 13</span><h2>⛰️ Sudeste — primeira olhada (Cap. 10, p. 8)</h2></div>
+  <div class="grid">
+    <div class="card sud"><h3>📍 Localização</h3><ul>
+      <li><b>4 estados</b>: São Paulo, Espírito Santo, Minas Gerais e Rio de Janeiro.</li>
+      <li>Cerca de <b>924 560 km²</b> — a <b>4ª maior</b> região.</li></ul></div>
+    <div class="card sud"><h3>⚓ Portos e megalópole</h3><ul>
+      <li>Portos de <b>Santos (SP)</b> e <b>Vitória (ES)</b>.</li>
+      <li><b>Única megalópole</b> do Brasil (junção de duas metrópoles), entre <b>SP e RJ</b>.</li></ul></div>
+  </div>
+
+  <!-- ===== CARTAS ===== -->
+  <div class="sec"><span class="pill pov">Revisão</span><h2>🃏 Cartas rápidas (toque para virar)</h2></div>
+  <div class="flips">
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Marcha para o Oeste<small>quando e para quê?</small></div><div class="face back">Anos <b>1930</b> (Vargas): expandir a fronteira agrícola e abastecer o Sudeste.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Revolução Verde<small>o que é?</small></div><div class="face back">A <b>modernização agrícola</b> da região, que levou ao agronegócio.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Motor das migrações atuais<small>quem é?</small></div><div class="face back">O <b>agronegócio</b>.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Animais endêmicos<small>o que são?</small></div><div class="face back">Animais que existem <b>somente</b> naquela região.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Itaipu<small>qual bacia?</small></div><div class="face back">Bacia do <b>Paraná</b> — energia para Brasil e Paraguai.</div></div></div>
+    <div class="flip" onclick="this.classList.toggle('on')"><div class="inner"><div class="face front">Megalópole<small>o que é e onde?</small></div><div class="face back">Junção de <b>duas metrópoles</b>; a única do Brasil fica entre <b>SP e RJ</b>.</div></div></div>
+  </div>
+
+  <!-- ===== GLOSSÁRIO ===== -->
+  <div class="sec"><h2>📚 Glossário</h2></div>
+  <div class="gloss">
+    <div><b>Bandeirantes</b> — foram à região no séc. XVII atrás de ouro e pedras preciosas.</div>
+    <div><b>Candangos</b> — trabalhadores (nordestinos e nortistas) que construíram Brasília.</div>
+    <div><b>Cidades-satélites</b> — cidades no entorno de Brasília, onde se aglomeraram os mais pobres.</div>
+    <div><b>Interiorizar</b> — levar pessoas e desenvolvimento para o interior.</div>
+    <div><b>Descentralizar</b> — tirar a concentração das atividades de um só lugar (o Sudeste).</div>
+    <div><b>Fronteira agrícola</b> — a área da agricultura que a Marcha para o Oeste queria expandir.</div>
+    <div><b>Revolução Verde</b> — evolução e modernização agrícola da região.</div>
+    <div><b>Agronegócio</b> — motor das migrações atuais.</div>
+    <div><b>Urbanização</b> — passagem do rural para o urbano, com migração e infraestrutura.</div>
+    <div><b>Escoar</b> — levar a produção embora para ser vendida.</div>
+    <div><b>Densidade demográfica</b> — habitantes por km² (hab/km²).</div>
+    <div><b>Natalidade</b> — número de nascimentos.</div>
+    <div><b>Latifoliadas</b> — árvores de folhas largas.</div>
+    <div><b>Planície de inundação</b> — área plana com alagamentos periódicos (Pantanal).</div>
+    <div><b>Antrópico</b> — causado pela ação humana.</div>
+    <div><b>Endêmico</b> — que só existe naquela região.</div>
+    <div><b>Ecoturismo</b> — turismo ligado a atividades da natureza.</div>
+    <div><b>Megalópole</b> — junção de duas metrópoles.</div>
+  </div>
+
+  <div class="fim" id="fim">
+    <h3 id="fim-h3">🔒 Próxima etapa: Simulado</h3>
+    <p id="fim-txt">Role até aqui e confirme a leitura para destravar o Simulado.</p>
+    <button id="btn-li" onclick="confirmarLeitura()" disabled>✅ Li o resumo até o fim</button>
+    <a class="btn off" id="btn-prox" href="simulado.html">📝 Pronto para o Simulado!</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🌼🌳💧</div>
+</div>
+
+<div class="modal-bg" id="lock">
+  <div class="modal">
+    <div class="big">🔒</div>
+    <p><b>Esta etapa ainda está trancada.</b></p>
+    <p id="lock-txt">Para abrir o Resumo, envie o Quiz.</p>
+    <a href="index.html">Voltar ao início</a>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='ipe_planalto';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+function checarTrava(){
+  if(podeAbrir('resumo')) return true;
+  var L=lerJSON(KIT+'_leitura_v1');
+  document.getElementById('lock-txt').textContent=(L&&L.concluido)?'Para abrir o Resumo, envie o Quiz.':'Para abrir o Resumo, conclua a Leitura Guiada e envie o Quiz.';
+  document.getElementById('lock').classList.add('show');
+  document.querySelector('.wrap').style.filter='blur(8px)';
+  document.querySelector('.wrap').setAttribute('aria-hidden','true');
+  return false;
+}
+
+/* ====== ESTADO DO RESUMO ====== */
+var CHAVE=KIT+'_resumo_v1'; var mem={}; var estado=carregar();
+function carregar(){ try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s);}catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); } return {rolagemMax:0}; }
+function salvar(){ var s=JSON.stringify(estado); try{ localStorage.setItem(CHAVE,s);}catch(e){ mem[CHAVE]=s; } document.getElementById('salvo').textContent='📏 Rolagem máxima: '+Math.round(estado.rolagemMax||0)+'%'; }
+function medirRolagem(){
+  var h=document.documentElement; var total=h.scrollHeight-h.clientHeight; var pct= total<=0?100:Math.min(100,(window.scrollY||h.scrollTop)/total*100);
+  if(pct>(estado.rolagemMax||0)){ estado.rolagemMax=pct; salvar(); }
+  var b=document.getElementById('btn-li'); if(!estado.concluido && (estado.rolagemMax||0)>=90){ b.disabled=false; }
+}
+function confirmarLeitura(){ if(estado.concluido) return; if((estado.rolagemMax||0)<90) return; estado.concluido=true; estado.concluidoEm=new Date().toISOString(); salvar(); atualizarFim(); }
+function atualizarFim(){
+  var h3=document.getElementById('fim-h3'), txt=document.getElementById('fim-txt'), b=document.getElementById('btn-li'), a=document.getElementById('btn-prox');
+  if(estado.concluido||trilhaLiberada()){ h3.textContent='✅ Resumo lido — Simulado destravado!'; txt.textContent=estado.concluido?'Agora encare o Simulado valendo, como se fosse a prova.':'Trilha liberada pelos pais.'; b.disabled=!!estado.concluido||(estado.rolagemMax||0)<90; b.textContent=estado.concluido?'✅ Resumo concluído':'✅ Li o resumo até o fim'; a.classList.remove('off'); }
+  else { h3.textContent='🔒 Próxima etapa: Simulado'; txt.textContent=(estado.rolagemMax||0)>=90?'Confirme a leitura para destravar o Simulado.':'Role até o fim da página para habilitar o botão (rolagem: '+Math.round(estado.rolagemMax||0)+'%).'; a.classList.add('off'); }
+  marcarNav();
+}
+function exportar(){ var blob=new Blob([JSON.stringify(estado,null,2)],{type:'application/json'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='resumo_ipe-do-planalto.json'; a.click(); }
+
+if(checarTrava()){ salvar(); atualizarFim(); window.addEventListener('scroll',function(){ medirRolagem(); atualizarFim(); }); setTimeout(function(){ medirRolagem(); atualizarFim(); },300); } else { marcarNav(); }
+</script>
+</body>
+</html>

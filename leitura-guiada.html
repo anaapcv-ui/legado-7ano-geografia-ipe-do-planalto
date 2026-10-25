@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leitura Guiada · Ipê do Planalto · Geografia 7º</title>
+<style>
+  :root{
+    --fundo:#1a120d; --fundo2:#24190f; --borda:#3a2a1c; --borda2:#55402b;
+    --ipe:#ffc93c; --buriti:#6fcf7a; --terra:#e2603f; --rio:#4fb3e0; --roxo:#b98be6;
+    --vermelho:#ff5d5d; --texto:#f6ecdf; --cinza:#b3a08c; --postit:#ffe88a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Tahoma,'Segoe UI',Verdana,sans-serif;background:
+    radial-gradient(900px 420px at 50% -8%,#3a2614,#1a120d 62%),var(--fundo);
+    color:var(--texto);line-height:1.65;padding-bottom:60px;font-size:17px}
+  h1,h2,h3{font-family:'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif}
+  header{background:linear-gradient(120deg,#163a1e,#1f4a26 50%,#3a2614);padding:26px 18px;text-align:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);border-bottom:4px solid var(--buriti)}
+  header .selo{font-size:.76rem;letter-spacing:2px;color:#cdeec9;text-transform:uppercase}
+  header h1{font-size:1.55rem;margin:6px 0 2px}
+  header p{color:#eadfcf;font-size:.92rem}
+  .wrap{max-width:820px;margin:0 auto;padding:16px}
+  .barra-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+  .barra-nav a{background:var(--fundo2);color:var(--texto);text-decoration:none;padding:7px 12px;
+    border-radius:20px;font-size:.85rem;border:1px solid var(--borda)}
+  .barra-nav a.on{background:var(--buriti);color:#0f2a12;font-weight:bold}
+  .barra-nav a.lock{opacity:.5}
+  .intro{background:var(--fundo2);border:1px solid var(--borda);border-radius:14px;padding:16px;margin-bottom:16px}
+  .intro h2{color:var(--ipe);font-size:1.15rem;margin-bottom:8px}
+  .intro ol{margin:8px 0 0 20px}
+  .legenda{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;font-size:.8rem}
+  .legenda span{padding:3px 10px;border-radius:12px;font-weight:bold}
+  .lg-pov{background:#3d3010;color:var(--ipe)} .lg-nat{background:#173a1c;color:var(--buriti)} .lg-agua{background:#123247;color:var(--rio)} .lg-eco{background:#45200f;color:var(--terra)} .lg-sud{background:#33224a;color:var(--roxo)}
+  .copa{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px auto 0;max-width:640px}
+  .copa div{font-size:.72rem;text-align:center;border-radius:20px 20px 20px 4px;padding:3px 9px;background:#2a1d12;border:1px solid var(--borda2);color:var(--cinza)}
+  .copa div.ok{background:#3d3010;color:var(--ipe);border-color:var(--ipe)}
+  .copa div.atual{background:#173a1c;color:#c9f3cd;border-color:var(--buriti)}
+  .tronco{text-align:center;color:#8a6a48;font-size:.75rem;margin-top:4px;letter-spacing:2px}
+  .painel{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+    background:var(--fundo2);border:1px solid var(--borda);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.85rem}
+  .painel .btns{display:flex;gap:6px;flex-wrap:wrap}
+  button{cursor:pointer;font-family:inherit}
+  .mini{background:var(--fundo);color:var(--texto);border:1px solid var(--borda2);border-radius:8px;padding:6px 10px;font-size:.8rem}
+  .mini:hover{background:#2e2014}
+  .bloco{background:var(--fundo2);border:1px solid var(--borda);border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  .bloco.travado{opacity:.55}
+  .bloco-cab{display:flex;align-items:center;gap:12px;padding:14px 16px;background:linear-gradient(90deg,#2c1f13,#33241a);border-bottom:1px solid var(--borda)}
+  .bloco-cab .num{background:var(--ipe);color:#2e2200;font-weight:bold;width:36px;height:36px;border-radius:50% 50% 50% 8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bloco.nat .bloco-cab .num{background:var(--buriti);color:#0f2a12}
+  .bloco.agua .bloco-cab .num{background:var(--rio);color:#06263a}
+  .bloco.eco .bloco-cab .num{background:var(--terra);color:#2e0e04}
+  .bloco.sud .bloco-cab .num{background:var(--roxo);color:#22113a}
+  .bloco-cab h3{font-size:1.08rem;color:#fff}
+  .bloco-cab .galho{font-size:.7rem;color:var(--cinza);letter-spacing:1px;text-transform:uppercase}
+  .bloco-corpo{padding:16px}
+  .texto p{margin-bottom:10px}
+  .texto ul{margin:0 0 10px 20px}
+  .texto li{margin-bottom:6px}
+  .texto .destaque{color:var(--ipe);font-weight:bold}
+  .bloco.nat .texto .destaque{color:var(--buriti)}
+  .bloco.agua .texto .destaque{color:var(--rio)}
+  .bloco.eco .texto .destaque{color:var(--terra)}
+  .bloco.sud .texto .destaque{color:var(--roxo)}
+  .olhar{background:#2e2610;border-left:3px solid var(--postit);padding:8px 12px;margin:0 0 10px;border-radius:0 8px 8px 0;font-size:.93rem}
+  .olhar b{color:var(--postit)}
+  .cadeado{padding:22px 16px;text-align:center;color:var(--cinza);font-size:.9rem}
+  .perg{background:#1e150d;border:1px solid var(--borda);border-radius:12px;padding:12px;margin-top:14px}
+  .perg.red{border-color:var(--vermelho);box-shadow:0 0 0 1px var(--vermelho)}
+  .perg .tag{display:inline-block;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
+  .tag.conc{background:#3d3010;color:#ffe39a}
+  .tag.apl{background:#173a1c;color:#c9f3cd}
+  .perg label{display:block;font-weight:600;margin-bottom:8px}
+  .perg textarea{width:100%;min-height:72px;background:#160f09;color:var(--texto);border:1px solid var(--borda2);border-radius:8px;padding:9px;font-family:inherit;font-size:.97rem;resize:vertical}
+  .aviso{margin-top:8px;padding:9px 11px;border-radius:8px;font-size:.87rem;display:none}
+  .aviso.amarelo{display:block;background:#4a3d12;border:1px solid var(--ipe);color:#fff1ad}
+  .aviso.vermelho{display:block;background:#4a1720;border:1px solid var(--vermelho);color:#ffc9cf}
+  .modelo{margin-top:10px;padding:10px 12px;background:#15301a;border:1px solid var(--buriti);border-radius:8px;font-size:.92rem;display:none}
+  .modelo.show{display:block}
+  .modelo .lab{color:#b6f0aa;font-weight:bold;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+  .chk{margin-top:10px;font-size:.9rem}
+  .chk .item{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}
+  .chk .item span{flex:1;min-width:180px}
+  .chk .simnao button{border:1px solid var(--borda2);background:#160f09;color:var(--texto);border-radius:6px;padding:4px 10px;margin-left:4px;font-size:.8rem}
+  .chk .simnao button.sim.ativo{background:var(--buriti);border-color:var(--buriti);color:#0f2a12}
+  .chk .simnao button.nao.ativo{background:var(--vermelho);border-color:var(--vermelho);color:#fff}
+  .conferir{margin-top:14px;background:var(--buriti);color:#0f2a12;border:none;border-radius:10px;padding:11px 18px;font-size:1rem;font-weight:bold;width:100%}
+  .conferir:disabled{background:#2e241a;color:#8a7a68;cursor:not-allowed}
+  .status-bloco{margin-top:10px;text-align:center;font-weight:bold;font-size:.95rem}
+  .prox{margin-top:12px;text-align:center}
+  .prox a{color:var(--ipe);text-decoration:none;font-weight:bold}
+  .peg{background:#3a1814;border:2px solid var(--terra);border-radius:16px;padding:16px;margin-top:20px}
+  .peg h3{color:#ffb9a6;margin-bottom:10px}
+  .peg ol{margin-left:20px}
+  .peg li{margin-bottom:7px}
+  .cobertura{background:var(--fundo2);border:1px solid var(--borda);border-radius:16px;padding:16px;margin-top:18px}
+  .cobertura h3{color:var(--buriti);margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.86rem}
+  th,td{border:1px solid var(--borda);padding:7px 9px;text-align:left}
+  th{background:#2c1f13}
+  .revisar{background:#3a2e06;border:2px solid var(--ipe);border-radius:16px;padding:16px;margin-top:18px}
+  .revisar h3{color:var(--ipe);margin-bottom:8px}
+  .revisar ul{margin-left:18px}
+  .relatorio{background:var(--fundo2);border:1px dashed var(--buriti);border-radius:14px;padding:16px;margin-top:18px;font-size:.9rem}
+  .relatorio h3{color:var(--buriti);margin-bottom:8px}
+  .trilha-fim{background:linear-gradient(120deg,#163a1e,#1f4a26);border:2px solid var(--buriti);border-radius:16px;padding:18px;margin-top:18px;text-align:center}
+  .trilha-fim h3{color:#b6f0aa;margin-bottom:8px}
+  .trilha-fim a.btn{display:inline-block;margin-top:8px;background:var(--ipe);color:#2e2200;text-decoration:none;font-weight:bold;padding:11px 20px;border-radius:10px}
+  .trilha-fim a.btn.off{background:#2e241a;color:#8a7a68;pointer-events:none}
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:50;align-items:center;justify-content:center;padding:16px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--fundo2);border:1px solid var(--buriti);border-radius:14px;padding:20px;max-width:420px;text-align:center}
+  .modal p{margin-bottom:14px}
+  .modal button{background:var(--buriti);color:#0f2a12;border:none;border-radius:8px;padding:9px 16px;font-weight:bold}
+  .rodape{text-align:center;color:var(--cinza);font-size:.8rem;margin-top:24px}
+</style>
+</head>
+<body>
+<header>
+  <div class="selo">Ipê do Planalto · Geografia 7º ano · Colégio Legado</div>
+  <h1>📖 Leitura Guiada — Galho a Galho</h1>
+  <p>Cap. 09 · Região Centro-Oeste: o coração do Brasil (+ início do Cap. 10, Sudeste) · Prova 27/10 · Bernoulli</p>
+</header>
+
+<div class="wrap">
+  <nav class="barra-nav" id="nav">
+    <a class="on" href="leitura-guiada.html">📖 Leitura Guiada</a>
+    <a href="quiz.html" data-etapa="quiz">🎯 Quiz</a>
+    <a href="resumo.html" data-etapa="resumo">🗺️ Resumo</a>
+    <a href="simulado.html" data-etapa="simulado">📝 Simulado</a>
+    <a href="index.html">🏠 Início</a>
+  </nav>
+
+  <div class="intro">
+    <h2>🌼 Bem-vindo(a) ao Ipê do Planalto</h2>
+    <p>O ipê é uma árvore do Cerrado, com o tronco torto que você vai entender no Galho 9. Aqui, cada <b>galho</b> guarda uma parte do capítulo do Centro-Oeste. São <b>13 galhos</b>, e cada um só abre a sua flor quando você <b>conferir</b> o galho anterior.</p>
+    <ol>
+      <li>Leia o galho com calma (tudo aqui vem das páginas do seu livro).</li>
+      <li>Responda as 3 perguntas <b>escrevendo</b> com as suas palavras (não vale copiar o texto).</li>
+      <li>Clique em <b>Conferir</b>: aparece a resposta-modelo e uma autoavaliação Sim/Não.</li>
+      <li>Com os 13 galhos conferidos e a autoavaliação respondida, o <b>🎯 Quiz destrava</b>.</li>
+    </ol>
+    <div class="legenda"><span class="lg-pov">👥 Território e população</span><span class="lg-nat">🌳 Natureza</span><span class="lg-agua">💧 Água</span><span class="lg-eco">🚜 Economia</span><span class="lg-sud">⛰️ Sudeste</span></div>
+    <div class="copa" id="copa"></div>
+    <div class="tronco">〰 tronco retorcido do cerrado 〰</div>
+  </div>
+
+  <div class="painel">
+    <span id="salvo">💾 Progresso salvo automaticamente.</span>
+    <div class="btns">
+      <button class="mini" onclick="exportar()">📥 Exportar</button>
+      <button class="mini" onclick="document.getElementById('imp').click()">📤 Importar</button>
+      <input type="file" id="imp" accept="application/json" style="display:none" onchange="importar(event)">
+      <button class="mini" onclick="pedirZerar()">🗑️ Zerar tudo</button>
+    </div>
+  </div>
+
+  <div id="blocos"></div>
+
+  <div class="peg">
+    <h3>⚠️ 10 Pegadinhas da Prova (não caia nelas!)</h3>
+    <ol>
+      <li><b>Tocantins:</b> nasceu de Goiás em <b>1988</b>, mas pertence à região <b>Norte</b>, não ao Centro-Oeste.</li>
+      <li><b>Não troque as datas:</b> <b>1958</b> = parte de Goiás vai para Brasília · <b>1977</b> = Mato Grosso é dividido e nasce o Mato Grosso do Sul · <b>1988</b> = nasce o Tocantins.</li>
+      <li><b>Menos gente, mas cresce mais:</b> o Centro-Oeste é a região <b>menos populosa</b>, mas teve a <b>maior taxa de crescimento</b> entre 2010 e 2022 (<b>1,23%</b>). O Norte ficou em 2º (0,75%).</li>
+      <li><b>Mais povoado × mais denso:</b> <b>Goiás</b> é o estado mais povoado (mais habitantes). A maior <b>densidade</b> é a do <b>Distrito Federal</b> (489,06 hab/km²).</li>
+      <li><b>De onde vieram:</b> os <b>candangos</b> (Brasília) eram principalmente <b>nordestinos e nortistas</b>. Os migrantes <b>depois de 1970</b> vieram sobretudo do <b>Sul</b>.</li>
+      <li><b>Terra barata:</b> o que atraiu os migrantes foi o <b>baixo</b> preço da terra (comparado ao Sul e ao Sudeste), não o alto.</li>
+      <li><b>Climas:</b> o predominante é o <b>tropical</b> (verão chuvoso e inverno seco). O <b>equatorial</b> tem pouca variação de temperatura. O <b>tropical de altitude</b> é mais ameno por causa da <b>altitude</b>.</li>
+      <li><b>Galho torto do Cerrado</b> = <b>alumínio no solo</b>. A <b>casca grossa</b> guarda umidade e defende das queimadas. As <b>raízes profundas</b> buscam água lá embaixo.</li>
+      <li><b>Bacias:</b> maior bacia <b>totalmente brasileira</b> = <b>Tocantins-Araguaia</b> · <b>Itaipu</b> = Bacia do <b>Paraná</b> · navegação para o <b>Mercosul</b> e Pantanal = Bacia do <b>Paraguai</b> · Rio <b>Xingu</b> = Bacia <b>Amazônica</b>.</li>
+      <li><b>Campo × cidade:</b> a agricultura moderna, com muita tecnologia, <b>diminuiu</b> os empregos no campo e empurrou gente para as cidades. E a única <b>megalópole</b> do Brasil fica entre <b>SP e RJ</b>.</li>
+    </ol>
+  </div>
+
+  <div class="cobertura">
+    <h3>🧭 Cobertura: Tópico → Galho</h3>
+    <table>
+      <thead><tr><th>Tópico</th><th>Páginas (Bernoulli)</th><th>Galho</th></tr></thead>
+      <tbody>
+        <tr><td>Aspectos gerais: área, população, estados e mudanças territoriais (1958, 1977, 1988)</td><td>Cap. 09 · 86</td><td>1</td></tr>
+        <tr><td>População e povoamento: indígenas, bandeirantes, mineração, pecuária, Rondon, Marcha para o Oeste</td><td>87</td><td>2</td></tr>
+        <tr><td>Brasília, candangos, cidades-satélites e interesses do Estado</td><td>88</td><td>3</td></tr>
+        <tr><td>Migrações depois de 1970, Revolução Verde e agronegócio (Exercitando 01 e 02)</td><td>89</td><td>4</td></tr>
+        <tr><td>Urbanização (tabela 1940–2022) e rodovias (Exercitando 03)</td><td>90, 92</td><td>5</td></tr>
+        <tr><td>População atual, crescimento, densidade e pirâmide etária</td><td>91–92</td><td>6</td></tr>
+        <tr><td>Climas: tropical, equatorial e tropical de altitude (Exercitando 04)</td><td>93, 95</td><td>7</td></tr>
+        <tr><td>Cerrado: características e fisionomias</td><td>94</td><td>8</td></tr>
+        <tr><td>Pantanal e Floresta Amazônica (Exercitando 05)</td><td>94–95</td><td>9</td></tr>
+        <tr><td>Hidrografia: bacias Amazônica, do Paraguai, Tocantins-Araguaia e do Paraná</td><td>98–99</td><td>10</td></tr>
+        <tr><td>Economia: linha do tempo, gado e grãos hoje</td><td>102</td><td>11</td></tr>
+        <tr><td>Agronegócio, indústria, cidades, comércio, serviços e turismo</td><td>103</td><td>12</td></tr>
+        <tr><td>Sudeste: localização, estados, área, portos e megalópole</td><td>Cap. 10 · 8</td><td>13</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="revisar" id="revisar" style="display:none">
+    <h3>🔁 Para revisar antes da prova</h3>
+    <ul id="revisar-lista"></ul>
+  </div>
+
+  <div class="relatorio">
+    <h3>📊 Para os pais (resumo desta leitura)</h3>
+    <div id="rel-conteudo">Assim que o aprendiz for conferindo os galhos, o resumo aparece aqui.</div>
+  </div>
+
+  <div class="trilha-fim" id="trilha-fim">
+    <h3>🔒 Próxima etapa: Quiz</h3>
+    <p id="trilha-fim-txt">O Quiz destrava quando os 13 galhos estiverem conferidos e a autoavaliação respondida.</p>
+    <a class="btn off" id="btn-prox" href="quiz.html">🎯 Ir para o Quiz</a>
+  </div>
+
+  <div class="rodape">Feito com carinho para o jovem aprendiz. 🌼🌳💧 Boa prova!</div>
+</div>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <p id="modal-txt"></p>
+    <button onclick="fecharModal()" id="modal-ok">Ok</button>
+    <button class="mini" onclick="fecharModal()" id="modal-cancel" style="display:none;margin-left:8px">Cancelar</button>
+  </div>
+</div>
+
+<script>
+/* ====== TRILHA COM CADEADOS (módulo comum do kit) ====== */
+var KIT='ipe_planalto';
+var TRILHA=[
+ {id:'leitura', chave:KIT+'_leitura_v1', nome:'Leitura Guiada', arquivo:'leitura-guiada.html', emoji:'📖'},
+ {id:'quiz', chave:KIT+'_quiz_v1', nome:'Quiz', arquivo:'quiz.html', emoji:'🎯'},
+ {id:'resumo', chave:KIT+'_resumo_v1', nome:'Resumo', arquivo:'resumo.html', emoji:'🗺️'},
+ {id:'simulado', chave:KIT+'_simulado_v1', nome:'Simulado', arquivo:'simulado.html', emoji:'📝'}
+];
+function lerJSON(k){ try{ var s=localStorage.getItem(k); return s?JSON.parse(s):null; }catch(e){ return null; } }
+function trilhaLiberada(){ var t=lerJSON(KIT+'_trilha_v1'); return !!(t&&t.liberadoPelosPais); }
+function etapaConcluida(id){ var e=TRILHA.filter(function(t){return t.id===id;})[0]; var d=lerJSON(e.chave); return !!(d&&d.concluido); }
+function podeAbrir(id){ var idx=TRILHA.map(function(t){return t.id;}).indexOf(id); if(idx<=0||trilhaLiberada()) return true; return etapaConcluida(TRILHA[idx-1].id); }
+function marcarNav(){
+  var links=document.querySelectorAll('#nav a[data-etapa]');
+  for(var i=0;i<links.length;i++){ var id=links[i].getAttribute('data-etapa'); if(!podeAbrir(id)){ links[i].classList.add('lock'); links[i].textContent='🔒 '+links[i].textContent.replace('🔒 ',''); links[i].setAttribute('title','Ainda trancado'); } else { links[i].classList.remove('lock'); links[i].textContent=links[i].textContent.replace('🔒 ',''); } }
+}
+
+/* ====== GALHOS (conteúdo das fotos do livro Bernoulli Geografia — Cap. 09 pp. 86-95, 98-99, 102-103; Cap. 10 p. 8) ====== */
+var BLOCOS = [
+ {
+  galho:"Galho 1 · Território e população", emoji:"🗺️", u:"pov",
+  titulo:"O coração do Brasil: tamanho, estados e mudanças no mapa",
+  texto:[
+   "O Centro-Oeste fica no meio do país — por isso o livro chama a região de <b>“o coração do Brasil”</b>. Ela é a <span class='destaque'>segunda maior região</span> brasileira, com cerca de <b>1 606 354 km²</b>. Mesmo sendo tão grande, o Censo 2022 contou por lá cerca de <b>16 289 538 habitantes</b>.",
+   "No mapa de hoje aparecem três estados — <b>Mato Grosso</b> (capital Cuiabá), <b>Mato Grosso do Sul</b> (capital Campo Grande) e <b>Goiás</b> (capital Goiânia) — e também o <b>Distrito Federal</b>, onde fica Brasília.",
+   "Esse desenho nem sempre foi assim. Comparando com o mapa do Brasil de 1945, o livro aponta as mudanças mais recentes:",
+   "<ul><li><b>1958</b> — uma parte do território de Goiás foi transferida para Brasília.</li><li><b>1977</b> — o estado de Mato Grosso foi dividido e deu origem ao <b>Mato Grosso do Sul</b>.</li><li><b>1988</b> — Goiás foi desmembrado e deu origem ao <b>Tocantins</b>, que pertence à região Norte.</li></ul>",
+   "<div class='olhar'><b>Olho no mapa:</b> o Tocantins saiu de Goiás, mas hoje NÃO faz parte do Centro-Oeste — ele é da região Norte.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Por que dá para dizer que o Centro-Oeste é uma região grande, mas com pouca gente? Use os números do livro.",modelo:"Porque ela é a segunda maior região do Brasil, com cerca de 1 606 354 km², mas o Censo 2022 contou só cerca de 16,3 milhões de habitantes — é a região menos populosa do país.",chk:["Disse que é a segunda maior região em área (cerca de 1,6 milhão de km²)?","Disse que tem pouca gente (cerca de 16,3 milhões de pessoas)?"]},
+   {tag:"apl",q:"Imagine um mapa do Brasil de 1950. O que apareceria no lugar de Mato Grosso e Mato Grosso do Sul? O que mudou em 1977?",modelo:"Apareceria só o Mato Grosso, um estado único e bem maior. Em 1977 ele foi dividido em dois, e a parte de baixo virou o Mato Grosso do Sul.",chk:["Disse que antes era um estado só (Mato Grosso)?","Disse que em 1977 ele foi dividido e surgiu o Mato Grosso do Sul?"]},
+   {tag:"apl",q:"Um colega afirmou: “O Tocantins é do Centro-Oeste, porque saiu de Goiás”. Explique o erro dele e diga o ano dessa mudança.",modelo:"O Tocantins nasceu em 1988, quando Goiás foi desmembrado, mas ele pertence à região Norte, e não ao Centro-Oeste.",chk:["Citei o ano de 1988?","Disse que o Tocantins é da região Norte?"]}
+  ]
+ },
+ {
+  galho:"Galho 2 · Território e população", emoji:"⏳", u:"pov",
+  titulo:"Como a região foi povoada: dos povos indígenas à Marcha para o Oeste",
+  texto:[
+   "<b>Antes da colonização</b>, o Centro-Oeste já era a casa de <span class='destaque'>povos indígenas</span> de diversas etnias. Cada povo tinha o seu modo de viver, adaptado aos diferentes ambientes da região.",
+   "Nos <b>séculos XVII e XVIII</b>, chegaram os <span class='destaque'>bandeirantes</span>, em busca de pedras preciosas e <b>ouro</b>. Com o ouro encontrado, a <b>mineração</b> foi explorada no século XVIII e ajudou a formar <b>povoados</b>. Junto com a <b>pecuária</b> (criação de gado), ela fez mais gente se fixar na região.",
+   "No <b>século XIX</b>, as minas ficaram escassas. A pecuária, que já existia, ganhou destaque e virou uma das <b>atividades predominantes</b> do Centro-Oeste.",
+   "No <b>final do século XIX</b>, o marechal <b>Cândido Rondon</b>, um engenheiro militar, comandou expedições científicas e mapeou grandes áreas de Mato Grosso e da Amazônia. A partir de 1890, ele trabalhou na construção das <span class='destaque'>linhas telegráficas</span> (ligando Mato Grosso a Goiás, Cuiabá a Corumbá e Mato Grosso ao Amazonas). Elas ampliaram a comunicação e deixaram o Centro-Oeste mais <b>integrado</b> ao resto do país.",
+   "No <b>século XX</b>: nos anos <b>1930</b>, o governo de Getúlio Vargas lançou a <span class='destaque'>Marcha para o Oeste</span>, para <b>expandir a fronteira agrícola</b> e <b>abastecer o Sudeste</b> com produtos primários. Nos anos <b>1950</b>, no governo de Juscelino Kubitschek, a <b>construção de Brasília</b> fez a migração para a região aumentar muito."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Coloque na ordem em que aconteceram e explique cada um em poucas palavras: Marcha para o Oeste · bandeirantes atrás de ouro · pecuária ganha destaque · povos indígenas.",modelo:"1º povos indígenas, que já viviam lá antes da colonização; 2º bandeirantes atrás de ouro e pedras preciosas (séculos XVII e XVIII); 3º a pecuária ganha destaque no século XIX, porque as minas acabaram ficando escassas; 4º Marcha para o Oeste, nos anos 1930.",chk:["A ordem ficou: indígenas → bandeirantes → pecuária → Marcha?","Expliquei pelo menos dois dos fatos?"]},
+   {tag:"apl",q:"Explique para um colega mais novo por que uma linha de telégrafo entre Cuiabá e Corumbá era importante para o Centro-Oeste daquela época.",modelo:"Porque ela deixava mandar mensagens entre lugares muito distantes. Assim, a comunicação aumentou e o Centro-Oeste ficou mais ligado (integrado) ao resto do Brasil.",chk:["Falei de comunicação (mandar mensagens)?","Falei de integrar/ligar a região ao resto do país?"]},
+   {tag:"conc",q:"Quais eram os dois objetivos da Marcha para o Oeste?",modelo:"Expandir a fronteira agrícola (levar a agricultura para mais longe) e abastecer o Sudeste com produtos primários.",chk:["Citei expandir a fronteira agrícola?","Citei abastecer o Sudeste com produtos primários?"]}
+  ]
+ },
+ {
+  galho:"Galho 3 · Território e população", emoji:"🏛️", u:"pov",
+  titulo:"Brasília, os candangos e as cidades-satélites",
+  texto:[
+   "A ideia de construir Brasília é antiga: surgiu no <b>século XIX</b>. O principal objetivo era <span class='destaque'>interiorizar o país</span> (levar gente e desenvolvimento para o interior) e <span class='destaque'>descentralizar</span> as atividades econômicas, que estavam concentradas no Sudeste. Vista de cima, Brasília é uma cidade <b>planejada</b>, pensada para mostrar o progresso e a modernidade do Brasil.",
+   "Quem ergueu a cidade foram os <span class='destaque'>candangos</span>: muitos <b>nordestinos e nortistas</b>, operários e trabalhadores animados com a chance de uma vida melhor. Muitas vezes chegavam só com a roupa do corpo, depois de viajar de caminhão até Goiás — uma viagem que podia durar até <b>45 dias</b>. Dormiam em alojamentos e trabalhavam <b>mais de 10 horas por dia</b>.",
+   "Quando a obra terminou, muita gente ficou; e outras pessoas continuaram chegando atrás de emprego e de melhores condições de vida. Só que o plano da cidade <b>não reservou lugares para as famílias mais pobres</b> morarem. Essas pessoas foram se juntar em cidades ao redor da capital, as <span class='destaque'>cidades-satélites</span>.",
+   "O livro resume: a ocupação do Centro-Oeste sempre esteve ligada aos <b>interesses do Estado</b> — econômicos, territoriais ou políticos — e os migrantes tiveram um papel importante, a começar pela construção de Brasília."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Um jornal de 1960 pergunta: “Para que construir a capital lá no meio do Brasil?”. Responda com as duas razões do livro.",modelo:"Para interiorizar o país, levando pessoas e desenvolvimento para o interior, e para descentralizar as atividades econômicas, que ficavam concentradas no Sudeste.",chk:["Citei interiorizar o país?","Citei descentralizar as atividades econômicas do Sudeste?"]},
+   {tag:"conc",q:"Quem foram os candangos?",modelo:"Foram os trabalhadores, principalmente nordestinos e nortistas, que migraram para construir Brasília, em busca de uma vida melhor.",chk:["Disse que eram os trabalhadores que construíram Brasília?","Disse que eram principalmente nordestinos e nortistas?"]},
+   {tag:"apl",q:"Se Brasília foi planejada, por que surgiram as cidades-satélites? Explique a causa.",modelo:"Porque o planejamento não previu áreas para as pessoas mais pobres morarem. Sem lugar na capital, elas foram se aglomerar nas cidades em volta de Brasília.",chk:["Disse que o plano não previu moradia para os mais pobres?","Disse que essas pessoas foram para cidades em volta da capital?"]}
+  ]
+ },
+ {
+  galho:"Galho 4 · Território e população", emoji:"🚚", u:"pov",
+  titulo:"Depois de 1970: migrantes do Sul e o motor do agronegócio",
+  texto:[
+   "Foi principalmente <b>depois de 1970</b> que a ocupação da região se acelerou. As oportunidades de emprego estavam caindo no Sudeste, e o governo fez vários <span class='destaque'>esforços governamentais</span> para atrair <b>migrantes</b>, principalmente do <b>Sul</b> do Brasil.",
+   "O que puxou essa gente para o Centro-Oeste?",
+   "<ul><li><b>incentivos fiscais e créditos</b>;</li><li>a chegada de <b>empresas e fazendeiros</b>;</li><li>o <b>baixo preço da terra</b>, comparado com o do Sul e do Sudeste;</li><li>a <b>expansão da fronteira agrícola</b> e o desenvolvimento da <b>infraestrutura</b>.</li></ul>",
+   "Tudo isso ajudou na evolução e modernização da agricultura da região, chamada de <span class='destaque'>Revolução Verde</span>, e depois no crescimento do <span class='destaque'>agronegócio</span>.",
+   "Hoje, o agronegócio é o principal motivo que atrai quem quer melhorar de vida. Por isso o livro o chama de <b>“o motor das migrações atuais”</b>."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Uma família de agricultores do Sul, nos anos 1970, pensa em se mudar para o Centro-Oeste. Cite duas vantagens que ela encontraria lá.",modelo:"A terra era mais barata do que no Sul e no Sudeste, e o governo dava incentivos fiscais e créditos. Também havia a expansão da fronteira agrícola e uma infraestrutura nova.",chk:["Citei a terra mais barata?","Citei mais uma vantagem (incentivos/créditos, fronteira agrícola ou infraestrutura)?"]},
+   {tag:"conc",q:"Que nome recebeu a modernização da agricultura da região e o que ela ajudou a criar depois?",modelo:"Revolução Verde; depois ela levou ao desenvolvimento do agronegócio.",chk:["Escrevi Revolução Verde?","Disse que depois veio o agronegócio?"]},
+   {tag:"apl",q:"Compare: o que atraía migrantes para o Centro-Oeste nos anos 1950 e o que atrai hoje?",modelo:"Nos anos 1950, o trabalho na construção de Brasília. Hoje, o agronegócio, que o livro chama de motor das migrações atuais.",chk:["Citei Brasília para os anos 1950?","Citei o agronegócio para hoje?"]}
+  ]
+ },
+ {
+  galho:"Galho 5 · Território e população", emoji:"🏙️", u:"pov",
+  titulo:"Urbanização: do campo para a cidade, e as rodovias",
+  texto:[
+   "<span class='destaque'>Urbanização</span> é a passagem de uma vida mais rural para uma vida mais urbana: as pessoas migram para as cidades, e as cidades ganham mais infraestrutura.",
+   "A tabela do livro mostra a virada no Centro-Oeste: em <b>1940</b>, só <b>21,52%</b> da população morava em cidades; em <b>1970</b>, <b>48,04%</b>; em <b>1980</b>, <b>67,79%</b>; e em <b>2022</b>, <b>91,35%</b>. Ou seja: a partir de 1970 a população urbana cresceu muito e passou a ser a maioria.",
+   "Por quê? Entram na conta a construção e a inauguração de <b>Brasília</b>, os <b>incentivos do governo</b>, a melhoria da <b>infraestrutura das cidades</b> e mais <b>empregos nos serviços ligados ao agronegócio</b>. E tem um detalhe importante: a agricultura moderna usa muita <b>tecnologia</b>, então precisa de <b>menos trabalhadores no campo</b>. Quem perdeu espaço no campo foi para as cidades procurar emprego.",
+   "As <span class='destaque'>rodovias</span> também tiveram papel. Elas foram abertas para <b>ligar o interior ao litoral</b> e para <b>escoar</b> os produtos primários (levar a produção para ser vendida), e ainda ajudaram a migração a crescer."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Pela tabela, entre quais anos a população urbana do Centro-Oeste passou de 50% (metade)? Mostre os números que provam isso.",modelo:"Entre 1970 e 1980: em 1970 a população urbana era de 48,04% (menos da metade) e em 1980 já era de 67,79% (mais da metade).",chk:["Respondi entre 1970 e 1980?","Usei os números 48,04% e 67,79%?"]},
+   {tag:"apl",q:"Depois de 1970, a população urbana ultrapassou a rural. Cite dois fatores que explicam isso e explique um deles com suas palavras.",modelo:"Fatores: construção de Brasília, incentivos do governo, melhoria da infraestrutura urbana, empregos nos serviços do agronegócio e a modernização agrícola. Exemplo: com máquinas e tecnologia, o campo precisou de menos trabalhadores, e essas pessoas foram morar nas cidades.",chk:["Citei dois fatores do livro?","Expliquei um deles?"]},
+   {tag:"conc",q:"Para que serviram as rodovias construídas no Centro-Oeste?",modelo:"Para ligar o interior ao litoral, escoar os produtos primários e ajudar a migração.",chk:["Citei ligar o interior ao litoral?","Citei escoar os produtos primários?"]}
+  ]
+ },
+ {
+  galho:"Galho 6 · Território e população", emoji:"👥", u:"pov",
+  titulo:"Quantos somos? População, densidade e pirâmide etária",
+  texto:[
+   "Mesmo sendo enorme, o Centro-Oeste é a região <span class='destaque'>menos populosa</span> do Brasil: <b>16 289 538</b> pessoas, enquanto o Sudeste, a mais populosa, tem 84 840 113. Mas atenção: entre 2010 e 2022 o Centro-Oeste teve a <span class='destaque'>maior taxa de crescimento</span> do país, <b>1,23%</b>, principalmente por causa do agronegócio. Em segundo lugar ficou o Norte, com 0,75%.",
+   "A <span class='destaque'>densidade demográfica</span> (quantos habitantes há, em média, em cada km²) da região é de <b>10,14 hab/km²</b>. <b>Goiás</b> é o estado mais povoado, com 7 056 495 pessoas. O mapa mostra diferenças enormes: Mato Grosso tem 4,05 hab/km², Mato Grosso do Sul 7,72 hab/km², Goiás 20,74 hab/km² e o Distrito Federal <b>489,06 hab/km²</b> — muita gente num espaço pequeno.",
+   "A <span class='destaque'>pirâmide etária</span> de 2022 mostra que a maior parte da população é <b>adulta</b>, entre <b>20 e 59 anos</b> (o “corpo” da pirâmide). A <b>taxa de natalidade</b> (número de nascimentos) vem caindo, e o topo da pirâmide vai afinando a partir dos 65 anos."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Um colega diz: “Se o Centro-Oeste tem pouca gente, ele também cresce pouco”. Use os dados do livro para mostrar que ele está errado.",modelo:"Ele está errado: o Centro-Oeste é a região menos populosa, mas teve a maior taxa de crescimento do país entre 2010 e 2022 (1,23%), principalmente por causa do agronegócio.",chk:["Disse que é a menos populosa, mas a que mais cresceu?","Citei o 1,23% ou o agronegócio como motivo?"]},
+   {tag:"apl",q:"Mato Grosso tem cerca de 3,6 milhões de habitantes e o Distrito Federal cerca de 2,8 milhões. Mesmo assim, o DF tem densidade muito maior. Como isso é possível?",modelo:"Densidade é o número de habitantes por km². O DF é pequeno, então as pessoas ficam muito concentradas (489,06 hab/km²). O Mato Grosso é enorme, então as pessoas ficam espalhadas (4,05 hab/km²).",chk:["Expliquei que densidade é habitantes por km²?","Comparei o tamanho do DF (pequeno) com o de MT (enorme)?"]},
+   {tag:"conc",q:"O que a pirâmide etária de 2022 mostra sobre a idade da população e sobre os nascimentos?",modelo:"Que a maioria das pessoas é adulta, entre 20 e 59 anos, e que a natalidade está caindo; há cada vez menos pessoas a partir dos 65 anos.",chk:["Disse que a maioria é adulta (20 a 59 anos)?","Disse que a natalidade está caindo?"]}
+  ]
+ },
+ {
+  galho:"Galho 7 · Natureza", emoji:"🌦️", u:"nat",
+  titulo:"Os três climas do Centro-Oeste",
+  texto:[
+   "Quando o assunto é natureza, o Centro-Oeste é muito variado: tem climas <b>tropical</b> e <b>equatorial</b> e três biomas — <b>Cerrado, Floresta Amazônica e Pantanal</b>.",
+   "São três climas principais. O <span class='destaque'>tropical</span> ocupa a maior parte do mapa: <b>temperaturas altas o ano todo</b>, com <b>verão chuvoso e inverno seco</b>. No climograma de <b>Cuiabá (MT)</b>, as barras de chuva são altas no começo e no fim do ano e quase somem no meio do ano.",
+   "O <span class='destaque'>equatorial</span> aparece no norte de Mato Grosso (exemplo: <b>Aripuanã</b>): temperaturas altas, com <b>pouca variação</b> entre os meses, e muita chuva no período chuvoso, que coincide com o verão.",
+   "O <span class='destaque'>tropical de altitude</span> aparece no sul da região (exemplo: <b>Iguatemi, MS</b>): temperaturas <b>mais amenas</b> (mais baixas), principalmente no inverno, por causa das <b>altitudes mais elevadas</b>. No climograma dessa cidade, a linha da temperatura desce no meio do ano.",
+   "<div class='olhar'><b>Lendo um climograma do livro:</b> as barras azuis mostram a chuva de cada mês (em mm) e a linha vermelha mostra a temperatura (em °C).</div>"
+  ],
+  perguntas:[
+   {tag:"apl",q:"Uma família quer visitar Cuiabá numa época com pouca chuva. Em que parte do ano ela deve ir? Explique usando o clima de Cuiabá e o que o climograma mostra (isso também treina o Exercitando 04).",modelo:"No meio do ano, no inverno. Cuiabá tem clima tropical, o que predomina na região: é quente o ano todo, com verão chuvoso e inverno seco — no climograma, as barras de chuva quase somem no meio do ano.",chk:["Escolhi o meio do ano (inverno)?","Usei o clima tropical (verão chuvoso e inverno seco)?"]},
+   {tag:"apl",q:"A cidade A tem calor quase igual o ano inteiro e muita chuva no verão. A cidade B tem inverno mais frio porque fica num lugar mais alto. Qual é o clima de cada uma?",modelo:"A cidade A tem clima equatorial (pouca variação de temperatura). A cidade B tem clima tropical de altitude (mais ameno por causa da altitude).",chk:["Disse que A é equatorial?","Disse que B é tropical de altitude?"]},
+   {tag:"conc",q:"Por que o clima tropical de altitude é mais ameno?",modelo:"Por causa das altitudes mais elevadas, que deixam as temperaturas mais baixas, principalmente no inverno.",chk:["Citei a altitude mais elevada como causa?"]}
+  ]
+ },
+ {
+  galho:"Galho 8 · Natureza", emoji:"🌳", u:"nat",
+  titulo:"Cerrado: o bioma do galho torto",
+  texto:[
+   "A vegetação do <span class='destaque'>Cerrado</span> ocupa a <b>maior parte</b> do Centro-Oeste e é típica do clima tropical. Ela tem jeitos especiais de sobreviver:",
+   "<ul><li><b>troncos e galhos retorcidos</b> — por causa do <b>alumínio no solo</b>, que atrapalha a absorção de alguns nutrientes;</li><li><b>cascas grossas</b> — guardam umidade e protegem a planta contra <b>queimadas</b>;</li><li><b>raízes profundas</b> — buscam a água guardada nas camadas mais fundas do solo.</li></ul>",
+   "O Cerrado tem uma <b>variedade de formações</b>, das plantas rasteiras até as matas mais fechadas. No esquema “Fisionomias do Cerrado”, da mais baixa e aberta para a mais alta e fechada: <b>campo limpo</b> e <b>campo sujo</b> (formação de campo), <b>campo cerrado</b> e <b>cerrado</b> (cerrado típico) e <b>cerradão</b> (formação com floresta).",
+   "Hoje o Cerrado sofre <span class='destaque'>devastação</span> por causa do crescimento da população e da expansão das atividades econômicas e da infraestrutura."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Ligue cada característica do Cerrado ao seu motivo ou utilidade: casca grossa · raiz profunda · galho retorcido.",modelo:"Casca grossa: guarda umidade e protege das queimadas. Raiz profunda: alcança a água nas camadas fundas do solo. Galho retorcido: acontece por causa do alumínio no solo, que atrapalha a absorção de nutrientes.",chk:["Acertei a casca grossa (umidade/queimadas)?","Acertei a raiz profunda (água lá no fundo)?","Acertei o galho retorcido (alumínio no solo)?"]},
+   {tag:"apl",q:"Coloque em ordem, da vegetação mais baixa e aberta para a mais alta e fechada: cerradão · campo limpo · cerrado típico.",modelo:"Campo limpo → cerrado típico → cerradão.",chk:["Comecei pelo campo limpo e terminei no cerradão?"]},
+   {tag:"conc",q:"Cite duas causas da devastação do Cerrado hoje.",modelo:"O crescimento da população e a expansão das atividades econômicas e da infraestrutura.",chk:["Citei o crescimento da população?","Citei a expansão das atividades econômicas/infraestrutura?"]}
+  ]
+ },
+ {
+  galho:"Galho 9 · Natureza", emoji:"🐊", u:"nat",
+  titulo:"Pantanal e Floresta Amazônica",
+  texto:[
+   "O <span class='destaque'>Pantanal</span> é a <b>maior planície de inundação contínua do mundo</b>. Nele acontecem <b>alagamentos periódicos</b>: rios e lagos transbordam e cobrem grandes áreas. É um ecossistema particular, típico da região, muito importante para preservar a <b>biodiversidade</b>, e é considerado <b>um dos patrimônios da humanidade</b>.",
+   "A vegetação do Pantanal mistura espécies da <b>Floresta Amazônica</b> e do <b>Cerrado</b>: há árvores grandes, como as da Amazônia, e tortas, como as do Cerrado. Na beira dos rios ficam as <b>matas ciliares</b>, densas; nas áreas que alagam, plantas adaptadas a muita água; e onde quase não alaga, a vegetação lembra o Cerrado. O Pantanal vem sendo <b>poluído e degradado</b> por ações humanas (<b>antrópicas</b>), como a urbanização e a agropecuária feita de forma errada ou contra a lei ambiental.",
+   "Já a <span class='destaque'>Floresta Amazônica</span>, no norte de Mato Grosso, é a <b>maior floresta tropical do mundo</b>, com grande biodiversidade de fauna e flora. É uma floresta <b>densa</b>, de árvores de grande porte e <b>latifoliadas</b> (de folhas largas). A maior ameaça a ela hoje é o <b>desmatamento ilegal</b>."
+  ],
+  perguntas:[
+   {tag:"conc",q:"O que significa dizer que o Pantanal é uma “planície de inundação”?",modelo:"Que é uma área plana que fica alagada de tempos em tempos, quando os rios e os lagos transbordam.",chk:["Falei de área plana?","Falei dos alagamentos periódicos (transbordamento de rios e lagos)?"]},
+   {tag:"apl",q:"A foto 1 mostra uma mata fechada, de árvores enormes com folhas largas. A foto 2 mostra campos alagados com um animal dentro da água. Que bioma aparece em cada foto? Cite uma característica de cada um (é o Exercitando 05).",modelo:"Foto 1: Floresta Amazônica — floresta densa, de árvores grandes e latifoliadas. Foto 2: Pantanal — maior planície de inundação do mundo, com alagamentos periódicos.",chk:["Disse Floresta Amazônica na foto 1, com uma característica?","Disse Pantanal na foto 2, com uma característica?"]},
+   {tag:"apl",q:"Escreva uma ameaça ao Pantanal e uma ameaça à Floresta Amazônica, segundo o livro.",modelo:"Pantanal: poluição e degradação por ações humanas, como a urbanização e a agropecuária feita de forma inadequada. Floresta Amazônica: o desmatamento ilegal.",chk:["Citei uma ameaça ao Pantanal?","Citei o desmatamento ilegal na Amazônia?"]}
+  ]
+ },
+ {
+  galho:"Galho 10 · Água", emoji:"💧", u:"agua",
+  titulo:"As bacias hidrográficas: a caixa-d'água do Brasil",
+  texto:[
+   "Uma grande riqueza do Centro-Oeste é a água: a região guarda as <span class='destaque'>nascentes</span> das principais bacias hidrográficas do Brasil. O livro destaca quatro.",
+   "<b>Bacia Amazônica</b> — banha Mato Grosso e tem nascentes de afluentes do Rio Amazonas, como o <b>Rio Xingu</b>. A Bacia do Xingu tem áreas preservadas de Cerrado e de Floresta Amazônica, <span class='destaque'>animais endêmicos</span> (que só existem ali), famílias ribeirinhas, Terras Indígenas e também muita atividade agropecuária.",
+   "<b>Bacia do Paraguai</b> — tem muitos trechos de <b>planície</b>, o que facilita a <b>navegação</b>; por isso é usada para transportar mercadorias para os países do <b>Mercosul</b>. Fica no <b>Pantanal</b>: na cheia, formam-se lagoas e sedimentos se depositam nas várzeas, deixando o solo <b>fértil</b>.",
+   "<b>Bacia do Tocantins-Araguaia</b> — é a <b>maior bacia totalmente brasileira</b>, formada pelos rios Tocantins e Araguaia; as populações ribeirinhas a usam para <b>transporte</b> e para <b>gerar energia elétrica</b>.",
+   "<b>Bacia do Paraná</b> — está também no <b>Sul e no Sudeste</b>. É muito usada para gerar energia (a usina binacional de <b>Itaipu</b> produz energia para o Brasil e o Paraguai) e para a navegação, sendo um dos pontos mais importantes para a circulação de mercadorias do país."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Você precisa mandar uma carga de barco até um país do Mercosul. Qual bacia você escolheria? Por quê?",modelo:"A Bacia do Paraguai, porque ela tem muitos trechos de planície, que facilitam a navegação, e já é usada para levar mercadorias aos países do Mercosul.",chk:["Escolhi a Bacia do Paraguai?","Expliquei com a planície/navegação/Mercosul?"]},
+   {tag:"apl",q:"De qual bacia é cada pista? (a) a maior bacia totalmente brasileira; (b) tem a usina de Itaipu; (c) tem o Rio Xingu.",modelo:"(a) Bacia do Tocantins-Araguaia; (b) Bacia do Paraná; (c) Bacia Amazônica.",chk:["Acertei a (a) Tocantins-Araguaia?","Acertei a (b) Paraná?","Acertei a (c) Amazônica?"]},
+   {tag:"conc",q:"O que são animais endêmicos?",modelo:"São animais que existem somente naquela região.",chk:["Disse que só existem naquele lugar?"]}
+  ]
+ },
+ {
+  galho:"Galho 11 · Economia", emoji:"🐂", u:"eco",
+  titulo:"Economia: do ouro rudimentar à liderança no campo",
+  texto:[
+   "Desde o começo do povoamento, a economia do Centro-Oeste se apoia em <span class='destaque'>atividades primárias</span>. Hoje, a <b>agropecuária</b> é o setor de destaque e tem participação muito importante no <b>PIB</b> (Produto Interno Bruto) do Brasil.",
+   "A linha do tempo do livro:",
+   "<ul><li><b>Séculos XVII e XVIII</b> — extrativismo mineral, feito de maneira <b>rudimentar</b>, que ajudou a formar cidades como <b>Corumbá, Cáceres e Cuiabá</b>.</li><li><b>Século XIX</b> — com a crise da mineração, pecuária e extração de <b>erva-mate</b> para a subsistência; a região viveu uma grande <b>estagnação econômica</b>.</li><li><b>Década de 1930</b> — Marcha para o Oeste: incentivos do governo, rodovias, ferrovias e fim de barreiras alfandegárias levaram à agropecuária para <b>abastecer o Sudeste</b> e facilitaram o comércio.</li><li><b>Décadas de 1970–1980</b> — planos de desenvolvimento fortaleceram a agricultura, com <b>maquinário</b>, defensivos agrícolas, sementes melhoradas, <i>drones</i>, monitoramento do tempo e mão de obra qualificada (engenheiros e zootécnicos). A região, antes marcada pela pecuária, passou a produzir <b>trigo, soja, arroz e milho</b>.</li></ul>",
+   "<b>Atualmente</b>, o Centro-Oeste <span class='destaque'>lidera a produção agrícola</span> brasileira e é o <b>principal produtor de gado</b>, com o maior rebanho do país: cerca de <b>77,2 milhões de cabeças</b>. O <b>Mato Grosso</b> tem o maior número, cerca de <b>34,2 milhões</b>, e influencia as indústrias de laticínios, frigoríficos e calçados. No gráfico de grãos (out./2023), o Centro-Oeste aparece com <b>50,9%</b> da produção do país, e o Mato Grosso sozinho com 31,4%."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Cuiabá, Corumbá e Cáceres nasceram de qual atividade? E por que a economia da região ficou parada (estagnada) no século XIX?",modelo:"Nasceram do extrativismo mineral (mineração feita de modo rudimentar). No século XIX a mineração entrou em crise; sobraram a pecuária e a erva-mate para a subsistência, e houve grande estagnação econômica.",chk:["Citei a mineração (extrativismo mineral)?","Expliquei a estagnação pela crise da mineração?"]},
+   {tag:"apl",q:"Antes de 1970 a região era marcada pela pecuária. O que mudou nas décadas de 1970–1980 e quais produtos passaram a ser plantados?",modelo:"Planos de desenvolvimento fortaleceram a agricultura e modernizaram as técnicas (máquinas, defensivos, sementes melhoradas, drones, monitoramento do tempo, engenheiros e zootécnicos). A região passou a produzir trigo, soja, arroz e milho.",chk:["Falei da modernização (máquinas, tecnologia)?","Citei pelo menos dois dos produtos (trigo, soja, arroz, milho)?"]},
+   {tag:"apl",q:"Pelo gráfico de grãos de 2023, mais da metade da produção do Brasil vem de qual região? E qual estado é o campeão de grãos e de gado?",modelo:"Do Centro-Oeste, com 50,9%. O Mato Grosso é o campeão: 31,4% dos grãos e o maior rebanho, com cerca de 34,2 milhões de cabeças.",chk:["Respondi Centro-Oeste (50,9%)?","Respondi Mato Grosso como campeão?"]}
+  ]
+ },
+ {
+  galho:"Galho 12 · Economia", emoji:"🏪", u:"eco",
+  titulo:"O agronegócio puxa a cidade — e o turismo cresce",
+  texto:[
+   "No mapa do livro, a maior parte da região é ocupada pela <b>pecuária extensiva</b> e por <b>lavouras, principalmente de grãos</b> (soja, milho, arroz, algodão, cana-de-açúcar, café, feijão e trigo aparecem na legenda). Com o dinheiro (o <b>capital</b>) gerado pela agropecuária, a <span class='destaque'>indústria</span> cresceu. Hoje ela é ligada ao agronegócio: produz <b>maquinário</b> e <b>processa</b> parte da produção local.",
+   "O livro mostra uma corrente de causas e consequências:",
+   "<ul><li>expansão do <b>agronegócio</b> com modernização →</li><li><b>crescimento da população</b>: gente migra em busca de trabalho e melhores condições de vida →</li><li><b>aumento da urbanização</b>: mais pessoas passam a viver em cidades →</li><li><b>novas atividades econômicas</b> nas cidades por causa da quantidade de pessoas →</li><li><b>comércio</b> (mais lojas, supermercados, novos negócios) e <b>serviços</b> (mais profissionais).</li></ul>",
+   "O <span class='destaque'>turismo</span> também cresceu. O Pantanal e as Chapadas dos Veadeiros e dos Guimarães chamam muita atenção, e <b>Goiás</b> teve um crescimento de <b>mais de 400%</b> no número de prestadores de serviços de turismo. O <span class='destaque'>ecoturismo</span> — o turismo ligado a atividades na natureza — é uma das principais atividades da região."
+  ],
+  perguntas:[
+   {tag:"apl",q:"Monte a “corrente” do livro que liga o agronegócio ao aumento do comércio nas cidades, com pelo menos quatro elos.",modelo:"Agronegócio com modernização → a população cresce (migrantes buscando trabalho) → aumenta a urbanização → surgem novas atividades nas cidades → crescem o comércio (lojas, supermercados) e os serviços.",chk:["Comecei pelo agronegócio?","Passei por população e urbanização?","Terminei em comércio e/ou serviços?"]},
+   {tag:"apl",q:"Abriu uma fábrica de tratores numa cidade de Mato Grosso. Explique como ela se liga à agropecuária da região.",modelo:"O dinheiro gerado pela agropecuária fez a indústria crescer, e hoje as indústrias são ligadas ao agronegócio: produzem máquinas, como tratores, e processam a produção local.",chk:["Liguei a indústria ao capital da agropecuária?","Disse que a indústria produz maquinário para o agronegócio?"]},
+   {tag:"conc",q:"O que é ecoturismo? Cite um lugar do Centro-Oeste que atrai turistas.",modelo:"É o turismo ligado a atividades na natureza. Exemplos: Pantanal, Chapada dos Veadeiros, Chapada dos Guimarães.",chk:["Defini como turismo ligado à natureza?","Citei um lugar (Pantanal ou uma das Chapadas)?"]}
+  ]
+ },
+ {
+  galho:"Galho 13 · Sudeste", emoji:"⛰️", u:"sud",
+  titulo:"Primeira olhada no Sudeste: entre as serras e o mar",
+  texto:[
+   "O Capítulo 10 começa uma nova região: o <span class='destaque'>Sudeste</span>, “entre as serras e o mar”. São <b>quatro estados</b>: <b>São Paulo, Espírito Santo, Minas Gerais e Rio de Janeiro</b>.",
+   "Segundo o IBGE, o Sudeste tem cerca de <b>924 560 km²</b> e é a <span class='destaque'>quarta maior região</span> do país em extensão. Compare com o que você viu: o Centro-Oeste, com cerca de 1 606 354 km², é a segunda maior.",
+   "A região tem <b>portos importantes</b>, como o de <b>Santos (SP)</b> e o de <b>Vitória (ES)</b>. E entre São Paulo e Rio de Janeiro está a <span class='destaque'>única megalópole</span> do Brasil — megalópole é a junção de duas metrópoles.",
+   "<div class='olhar'><b>Atenção:</b> este galho cobre só a página 8 do Capítulo 10, que foi a única desse capítulo nas fotos.</div>"
+  ],
+  perguntas:[
+   {tag:"conc",q:"Quais são os quatro estados do Sudeste?",modelo:"São Paulo, Espírito Santo, Minas Gerais e Rio de Janeiro.",chk:["Escrevi os quatro estados certos?"]},
+   {tag:"apl",q:"Compare o Sudeste com o Centro-Oeste: qual é maior em área e qual tem mais gente? Use a posição no ranking e os números do livro.",modelo:"O Centro-Oeste é maior em área: é a segunda maior região (cerca de 1 606 354 km²), e o Sudeste é a quarta (cerca de 924 560 km²). Mas o Sudeste tem muito mais gente: é a região mais populosa (84 840 113 pessoas), contra 16 289 538 do Centro-Oeste.",chk:["Disse que o Centro-Oeste é maior em área (2ª × 4ª)?","Disse que o Sudeste tem mais gente (o mais populoso)?"]},
+   {tag:"apl",q:"Uma empresa do Espírito Santo quer exportar café de navio. Outra empresa quer abrir lojas na área urbana formada pela junção de duas metrópoles. Segundo o livro, que porto a primeira usaria? E qual é o nome e a localização da área que a segunda procura?",modelo:"A primeira usaria o porto de Vitória, no próprio Espírito Santo. A segunda procura uma megalópole — e a única do Brasil fica entre os estados de São Paulo e Rio de Janeiro.",chk:["Citei o porto de Vitória (ES)?","Escrevi o nome megalópole?","Disse que ela fica entre SP e RJ?"]}
+  ]
+ }
+];
+
+/* ====== ESTADO E PERSISTÊNCIA ====== */
+var CHAVE=KIT+'_leitura_v1';
+var mem={};
+var estado=carregar();
+
+function carregar(){
+  try{ var s=localStorage.getItem(CHAVE); if(s) return JSON.parse(s); }catch(e){ if(mem[CHAVE]) return JSON.parse(mem[CHAVE]); }
+  return {blocos:{}};
+}
+function calcProgresso(){
+  var conf=0, chkPend=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estado.blocos[i]; if(!b||!b.conferido) return; conf++;
+    bloco.perguntas.forEach(function(p,j){ var ep=(b.perguntas&&b.perguntas[j])||{chk:{}}; p.chk.forEach(function(pt,k){ if(!ep.chk||!ep.chk[k]) chkPend++; }); });
+  });
+  estado.progresso={conferidos:conf,total:BLOCOS.length,chkPendentes:chkPend};
+  if(conf===BLOCOS.length && chkPend===0){ if(!estado.concluido){ estado.concluido=true; estado.concluidoEm=new Date().toISOString(); } }
+  return estado.progresso;
+}
+function salvar(){
+  calcProgresso();
+  var s=JSON.stringify(estado);
+  try{ localStorage.setItem(CHAVE,s); }catch(e){ mem[CHAVE]=s; }
+  var d=new Date();
+  document.getElementById('salvo').textContent='💾 Salvo às '+d.toLocaleTimeString('pt-BR')+' de '+d.toLocaleDateString('pt-BR');
+  atualizarTrilhaFim();
+}
+function atualizarTrilhaFim(){
+  var p=estado.progresso||calcProgresso();
+  var box=document.getElementById('trilha-fim'), txt=document.getElementById('trilha-fim-txt'), btn=document.getElementById('btn-prox');
+  var h3=box.querySelector('h3');
+  if(estado.concluido||trilhaLiberada()){
+    h3.textContent='✅ Leitura concluída — Quiz destravado!';
+    txt.textContent=estado.concluido?'Você conferiu os 13 galhos e respondeu a autoavaliação. O ipê está florido! Agora teste o que aprendeu.':'Trilha liberada pelos pais.';
+    btn.classList.remove('off');
+  } else {
+    h3.textContent='🔒 Próxima etapa: Quiz';
+    var faltam=p.total-p.conferidos;
+    txt.textContent=faltam>0 ? 'Destrava quando você conferir os '+p.total+' galhos (faltam '+faltam+').' : 'Falta responder a autoavaliação Sim/Não de '+p.chkPendentes+' ponto(s) para destravar.';
+    btn.classList.add('off');
+  }
+  marcarNav();
+  desenharCopa();
+}
+function desenharCopa(){
+  var t=document.getElementById('copa'); if(!t) return; var h='';
+  var atualMarcado=false;
+  BLOCOS.forEach(function(b,i){ var e=estado.blocos[i]; var cls=''; var ic='🔒';
+    if(e&&e.conferido){ cls='ok'; ic='🌼'; } else if(!atualMarcado && (i===0 || (estado.blocos[i-1]&&estado.blocos[i-1].conferido))){ cls='atual'; ic='🌱'; atualMarcado=true; }
+    h+='<div class="'+cls+'">'+ic+' Galho '+(i+1)+'</div>'; });
+  t.innerHTML=h;
+}
+function estBloco(i){ if(!estado.blocos[i]) estado.blocos[i]={aberto:i===0,conferido:false,perguntas:{}}; return estado.blocos[i]; }
+function estPerg(i,j){ var b=estBloco(i); if(!b.perguntas[j]) b.perguntas[j]={resp:'',warned:false,red:false,tentou:'',chk:{}}; return b.perguntas[j]; }
+
+/* ====== ANTICÓPIA (motor validado — Português 7º, 08/10/2026; reaproveitado sem mudança) ====== */
+function normPal(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/<[^>]*>/g,' ').replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function maiorRun(aw,bw){
+  var bStr=' '+bw.join(' ')+' ', best=0;
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>0; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ if(len>best)best=len; break; }
+    }
+  }
+  return best;
+}
+function cobertoPorRuns(aw,bw,minRun){
+  var bStr=' '+bw.join(' ')+' ', cov=new Array(aw.length).fill(false);
+  for(var i=0;i<aw.length;i++){
+    for(var len=aw.length-i; len>=minRun; len--){
+      var sub=aw.slice(i,i+len).join(' ');
+      if(bStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)cov[k]=true; break; }
+    }
+  }
+  return cov.filter(Boolean).length;
+}
+function ehCopia(resp, textoBloco, pergunta){
+  var a=normPal(resp), src=normPal(textoBloco), q=normPal(pergunta);
+  if(a.length<5) return false;
+  var qStr=' '+q.join(' ')+' ', keep=new Array(a.length).fill(true);
+  for(var i=0;i<a.length;i++){
+    for(var len=a.length-i; len>=4; len--){
+      var sub=a.slice(i,i+len).join(' ');
+      if(qStr.indexOf(' '+sub+' ')>=0){ for(var k=i;k<i+len;k++)keep[k]=false; break; }
+    }
+  }
+  var af=a.filter(function(w,idx){return keep[idx];});
+  if(af.length<5) return false;
+  var run=maiorRun(af,src);
+  var cov=cobertoPorRuns(af,src,5);
+  var ratio=cov/af.length;
+  return run>=8 || ratio>0.6;
+}
+
+/* ====== RENDER ====== */
+function textoPlano(bloco){ return bloco.texto.join(' '); }
+function irBloco(i){ var el=document.getElementById('bloco'+i); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function render(){
+  var cont=document.getElementById('blocos'); cont.innerHTML='';
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    var div=document.createElement('div'); div.className='bloco '+bloco.u+(b.aberto?'':' travado'); div.id='bloco'+i;
+    var html='<div class="bloco-cab"><div class="num">'+(i+1)+'</div><div><div class="galho">'+bloco.galho+'</div><h3>'+bloco.emoji+' '+bloco.titulo+'</h3></div></div>';
+    if(!b.aberto){
+      html+='<div class="cadeado">🔒 Este galho só floresce quando você conferir o galho anterior.</div>';
+      div.innerHTML=html; cont.appendChild(div); return;
+    }
+    html+='<div class="bloco-corpo"><div class="texto">';
+    bloco.texto.forEach(function(p){ html+= (p.indexOf('<div')===0 || p.indexOf('<ul')===0 ? p : '<p>'+p+'</p>'); });
+    html+='</div>';
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      var tagTxt=p.tag==='conc'?'Conceito':'Aplicação';
+      html+='<div class="perg'+(ep.red?' red':'')+'" id="perg'+i+'_'+j+'">';
+      html+='<span class="tag '+p.tag+'">'+tagTxt+'</span>';
+      html+='<label for="ta'+i+'_'+j+'">'+(j+1)+'. '+p.q+'</label>';
+      html+='<textarea id="ta'+i+'_'+j+'" oninput="digitou('+i+','+j+')">'+(ep.resp||'').replace(/</g,'&lt;')+'</textarea>';
+      html+='<div class="aviso" id="av'+i+'_'+j+'"></div>';
+      html+='<div class="modelo" id="mod'+i+'_'+j+'"><span class="lab">Resposta-modelo</span><p>'+p.modelo+'</p>';
+      html+='<div class="chk" id="chk'+i+'_'+j+'"></div></div>';
+      html+='</div>';
+    });
+    html+='<button class="conferir" id="conf'+i+'" onclick="conferir('+i+')">✔️ Conferir este galho</button>';
+    html+='<div class="status-bloco" id="st'+i+'"></div>';
+    if(i<BLOCOS.length-1){ html+='<div class="prox" id="px'+i+'"></div>'; }
+    html+='</div>';
+    div.innerHTML=html;
+    cont.appendChild(div);
+  });
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i);
+    if(b.aberto && b.conferido){ mostrarConferido(i); }
+    atualizarBotao(i);
+  });
+  atualizarRelatorio();
+  atualizarTrilhaFim();
+}
+
+function digitou(i,j){
+  var ep=estPerg(i,j);
+  ep.resp=document.getElementById('ta'+i+'_'+j).value;
+  if(ep.red){
+    var bloco=BLOCOS[i];
+    if(!ehCopia(ep.resp, textoPlano(bloco), bloco.perguntas[j].q)){
+      ep.red=false;
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso'; av.textContent='';}
+    }
+  }
+  atualizarBotao(i);
+  salvar();
+  atualizarRelatorio();
+}
+
+function atualizarBotao(i){
+  var b=estBloco(i); if(!b.aberto) return;
+  var btn=document.getElementById('conf'+i); if(!btn) return;
+  if(b.conferido){ btn.textContent='✔️ Galho conferido'; btn.disabled=true; return; }
+  var todas=true;
+  BLOCOS[i].perguntas.forEach(function(p,j){
+    var v=(document.getElementById('ta'+i+'_'+j)||{}).value||estPerg(i,j).resp||'';
+    if(v.trim().length<3) todas=false;
+  });
+  btn.disabled=!todas;
+}
+
+function conferir(i){
+  var bloco=BLOCOS[i], b=estBloco(i);
+  var algumBloqueado=false;
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    ep.resp=document.getElementById('ta'+i+'_'+j).value;
+    var av=document.getElementById('av'+i+'_'+j);
+    var copia=ehCopia(ep.resp, textoPlano(bloco), p.q);
+    if(copia){
+      if(!ep.warned || ep.resp===ep.tentou){
+        if(!ep.warned){ ep.warned=true; ep.tentou=ep.resp; }
+        av.className='aviso amarelo';
+        av.innerHTML='✋ Boa parte da sua resposta está igual ao texto. Tente <b>reescrever com as suas palavras</b> — explique como se fosse para um amigo, sem olhar o texto. Pode ficar mais curto e simples: o que vale é ser <b>SEU</b>.';
+        algumBloqueado=true;
+      } else {
+        ep.red=true;
+        av.className='aviso vermelho';
+        av.innerHTML='🔴 Esta resposta continua muito parecida com o texto. Ela foi aceita, mas ficou marcada para revisar. Se reescrever com as suas palavras, a marca some.';
+        document.getElementById('perg'+i+'_'+j).classList.add('red');
+      }
+    } else {
+      ep.red=false;
+      if(av){ av.className='aviso'; av.textContent=''; }
+      var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.remove('red');
+    }
+  });
+  salvar();
+  if(algumBloqueado){
+    document.getElementById('st'+i).innerHTML='<span style="color:var(--ipe)">✍️ Reescreva as respostas marcadas em amarelo (mude o que escreveu) e clique em Conferir de novo.</span>';
+    return;
+  }
+  b.conferido=true;
+  if(i<BLOCOS.length-1){ estBloco(i+1).aberto=true; }
+  salvar();
+  render();
+  var alvo=document.getElementById('bloco'+i);
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function mostrarConferido(i){
+  var bloco=BLOCOS[i];
+  bloco.perguntas.forEach(function(p,j){
+    var ep=estPerg(i,j);
+    var mod=document.getElementById('mod'+i+'_'+j); if(mod) mod.classList.add('show');
+    if(ep.red){ var pd=document.getElementById('perg'+i+'_'+j); if(pd) pd.classList.add('red');
+      var av=document.getElementById('av'+i+'_'+j); if(av){av.className='aviso vermelho'; av.innerHTML='🔴 Resposta marcada para revisar (muito parecida com o texto). Reescreva com as suas palavras para tirar a marca.';}
+    }
+    var chk=document.getElementById('chk'+i+'_'+j); if(chk){
+      var h='<b style="font-size:.8rem;color:#b6f0aa">Confira você: a sua resposta…</b>';
+      p.chk.forEach(function(pt,k){
+        var val=ep.chk[k]||'';
+        h+='<div class="item"><span>'+pt+'</span><span class="simnao">'
+         +'<button class="sim'+(val==='sim'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'sim\')">Sim</button>'
+         +'<button class="nao'+(val==='nao'?' ativo':'')+'" onclick="marcarChk('+i+','+j+','+k+',\'nao\')">Não</button>'
+         +'</span></div>';
+      });
+      chk.innerHTML=h;
+    }
+  });
+  atualizarStatusBloco(i);
+  var btn=document.getElementById('conf'+i); if(btn){ btn.textContent='✔️ Galho conferido'; btn.disabled=true; }
+  if(i<BLOCOS.length-1){
+    var px=document.getElementById('px'+i);
+    if(px) px.innerHTML='<a href="#bloco'+(i+1)+'" onclick="irBloco('+(i+1)+');return false;">🌼 Ir para o próximo galho</a>';
+  }
+}
+
+function marcarChk(i,j,k,val){
+  var ep=estPerg(i,j); ep.chk[k]=val;
+  salvar(); mostrarConferido(i); atualizarStatusBloco(i); atualizarRelatorio();
+}
+
+function statusPergunta(i,j){
+  var ep=estPerg(i,j), p=BLOCOS[i].perguntas[j];
+  if(ep.red) return 'revisar';
+  var temNao=false, todasResp=true;
+  p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao') temNao=true; if(!ep.chk[k]) todasResp=false; });
+  if(temNao) return 'revisar';
+  if(!todasResp) return 'pendente';
+  return 'ok';
+}
+function atualizarStatusBloco(i){
+  var st=document.getElementById('st'+i); if(!st) return;
+  var revisar=false, pendente=false;
+  BLOCOS[i].perguntas.forEach(function(p,j){ var s=statusPergunta(i,j); if(s==='revisar')revisar=true; if(s==='pendente')pendente=true; });
+  if(revisar) st.innerHTML='<span style="color:#ffb3bb">🔁 Este galho tem pontos para revisar.</span>';
+  else if(pendente) st.innerHTML='<span style="color:var(--ipe)">📝 Responda a autoavaliação (Sim/Não) de cada pergunta.</span>';
+  else st.innerHTML='<span style="color:#b6f0aa">✅ Galho florido com sucesso!</span>';
+  atualizarRelatorio();
+}
+
+function atualizarRelatorio(){
+  var lista=[], totalConf=0, totalRed=0, totalNao=0;
+  BLOCOS.forEach(function(bloco,i){
+    var b=estBloco(i); if(!b.conferido) return; totalConf++;
+    bloco.perguntas.forEach(function(p,j){
+      var ep=estPerg(i,j);
+      if(ep.red){ totalRed++; lista.push('Galho '+(i+1)+' ('+bloco.titulo+'): pergunta '+(j+1)+' — resposta muito parecida com o texto.'); }
+      p.chk.forEach(function(pt,k){ if(ep.chk[k]==='nao'){ totalNao++; lista.push('Galho '+(i+1)+' ('+bloco.titulo+'): revisar — “'+pt+'”'); } });
+    });
+  });
+  var rev=document.getElementById('revisar'), rl=document.getElementById('revisar-lista');
+  if(lista.length){ rev.style.display='block'; rl.innerHTML=lista.map(function(x){return '<li>'+x+'</li>';}).join(''); }
+  else { rev.style.display='none'; rl.innerHTML=''; }
+  var rc=document.getElementById('rel-conteudo');
+  rc.innerHTML='<b>Galhos conferidos:</b> '+totalConf+' de '+BLOCOS.length+'.<br>'
+    +'<b>Respostas marcadas (muito parecidas com o texto):</b> '+totalRed+'.<br>'
+    +'<b>Pontos marcados como “Não” na autoavaliação:</b> '+totalNao+'.<br>'
+    +(lista.length? '<span style="color:#ffb3bb">Há '+lista.length+' ponto(s) para revisar (lista acima).</span>' : '<span style="color:#b6f0aa">Sem pontos pendentes para revisar. 👏</span>');
+}
+
+/* ====== EXPORTAR / IMPORTAR / ZERAR ====== */
+function exportar(){
+  var dados=JSON.stringify(estado,null,2);
+  var blob=new Blob([dados],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='leitura-guiada_ipe-do-planalto.json'; a.click();
+}
+function importar(ev){
+  var f=ev.target.files[0]; if(!f) return;
+  var r=new FileReader();
+  r.onload=function(){ try{ estado=JSON.parse(r.result); salvar(); render(); mostrarModal('✅ Progresso importado!',false); }catch(e){ mostrarModal('❌ Arquivo inválido.',false); } };
+  r.readAsText(f);
+}
+var acaoZerar=null;
+function pedirZerar(){ acaoZerar=true; mostrarModal('Tem certeza que quer apagar TODO o progresso desta leitura? (O Quiz continua destravado se já tiver sido destravado.)',true); }
+function mostrarModal(txt,confirmar){
+  document.getElementById('modal-txt').innerHTML=txt;
+  document.getElementById('modal').classList.add('show');
+  document.getElementById('modal-cancel').style.display=confirmar?'inline-block':'none';
+  document.getElementById('modal-ok').textContent=confirmar?'Sim, apagar':'Ok';
+  document.getElementById('modal-ok').onclick=function(){ if(confirmar && acaoZerar){ var c=estado.concluido, ce=estado.concluidoEm; estado={blocos:{}}; if(c){estado.concluido=true; estado.concluidoEm=ce;} salvar(); render(); } acaoZerar=null; fecharModal(); };
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('show'); }
+
+render();
+</script>
+</body>
+</html>
